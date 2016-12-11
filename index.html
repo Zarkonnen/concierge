@@ -268,6 +268,7 @@ for (var i = 0; i < peopleList.length; i++) {
 }
 
 // State
+var splash = true;
 var night = false;
 var intro = true;
 var managerOut = true;
@@ -302,6 +303,10 @@ var activatePostAnim = false;
 var emitTick = 0;
 var toDisturbRoomIndexes = [];
 var particles = [];
+var apocalypse = false;
+var tentacle = null;
+var tentacleX = 0;
+var tentacleY = 0;
 var rooms = [
     {
         name: "Room 1",
@@ -390,12 +395,12 @@ function pickGuest() {
     var guestID = ids[Math.floor(Math.random() * ids.length)];
     if (!guestIDs.cultist) {
         guestID = "cultist";
-    } else if (!guestIDs.vampire) {
-        guestID = "vampire";
+    } else if (!guestIDs.granny) {
+        guestID = "granny";
     }
-     else if (!guestIDs.vamp) {
+    /* else if (!guestIDs.vamp) {
         guestID = "vamp";
-    }
+    }*/
     guestIDs[guestID] = 1;
     var guest = people[guestID];
     animate(guest, guest.introParticles ? "standing" : "walking");
@@ -435,6 +440,13 @@ function kill(person) {
     toKill = person;
 }
 
+function tentacleKill(person) {
+    tentacle = "tentacle" + Math.floor(Math.random() * 2);
+    tentacleX = person.x;
+    tentacleY = 800;
+    toKill = person;
+}
+
 function neutralize(person) {
     toNeutralize = person;
 }
@@ -451,6 +463,13 @@ function doMove(person, from, room, right) {
 }
 
 function input(ms) {
+    if (splash) {
+        if (click) {
+            splash = false;
+            click = null;
+        }
+        return;
+    }
     if (!night) {
         instaNight();
         return;
@@ -574,7 +593,13 @@ function update(ms) {
                 });
             }
         }
-        if (animating) {
+        if (tentacle != null) {
+            tentacleY -= ms;
+            if (tentacleY <= toKill.y) {
+                tentacle = null;
+            }
+            return;
+        } else if (animating) {
             var a = animating;
             var currentAnim = animating.animation;
             animating = animTick(animating, ms);
@@ -701,6 +726,17 @@ function update(ms) {
             }
             postAnimWait = 500;
             toNeutralize = null;
+        } else if (apocalypse) {
+            if (numSurvivors == 0) {
+                apocalypse = false;
+            } else {
+                for (var i = 0; i < rooms.length; i++) {
+                    if (rooms[i].occupant.alive) {
+                        tentacleKill(rooms[i].occupant);
+                        return;
+                    }
+                }
+            }
         } else {
             if (!turnGuest) {
                 if (toDisturbRoomIndexes.length > 0) {
@@ -733,8 +769,19 @@ function update(ms) {
                 }
             }
             if (!turnGuest) {
-                console.log("All done!");
-                // qqDPS Final Score
+                console.log("Turns done");
+                if (people.vampire.alive && people.vampire.feeding && people.vampire.feedingRoom.occupant.alive) {
+                    if (people.vampire.feedingRoom.occupant.winsOverVampire) {
+                        console.log("The vampire stayed too late!");
+                        kill(people.vampire);
+                    } else {
+                        console.log("The vampire kills!");
+                        kill(people.vampire.feedingRoom.occupant);
+                    }
+                }
+                if (people.cultist.alive && people.cultist.moved && !people.cultist.neutralized) {
+                    apocalypse = true;
+                }
                 return;
             }
             if (!turnGuest.moved) {
@@ -1184,14 +1231,16 @@ var h = 0;
 var scale = 1.0;
 
 function draw() {
-    c.fillStyle = "#444444";
-    c.fillRect(0, 0, canvas.width, canvas.height);
     c.resetTransform();
+    c.fillStyle = "#ddc3ac";
+    c.fillRect(0, 0, canvas.width, canvas.height);
     scale = canvas.height / 700.0;
     w = canvas.width / scale;
     h = 700;
     c.scale(scale, scale);
-    if (night) {
+    if (splash) {
+        img("logo", w / 2, h * 0.6);
+    } else if (night) {
         img("rooms-night", w / 2, h / 2);
         c.translate(w / 2 - 500, 0);
         text("Survivors: " + numSurvivors(), 200, 350);
@@ -1204,6 +1253,9 @@ function draw() {
             c.resetTransform();
             c.scale(scale, scale);
             c.translate(w / 2 - 500, 0);
+        }
+        if (tentacle) {
+            img(tentacle, tentacleX, tentacleY + 500);
         }
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];

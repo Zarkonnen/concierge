@@ -47,9 +47,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="-422.63672"
-     inkscape:cy="874.53846"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="737.22619"
+     inkscape:cy="1408.2239"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -4482,6 +4482,24 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csccsc"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/suitcase.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/tentacle1.png"
+       sodipodi:nodetypes="csssc"
+       inkscape:connector-curvature="0"
+       id="path4614"
+       d="m 698.00679,49.49059 c 117.99718,-160.19723 -84.07073,-280.19838 -29.52233,-494.44991 6.10159,-23.96542 15.01715,-17.87612 23.41767,-18.73075 142.68606,-14.51618 24.07273,2.59153 43.59966,165.88309 26.29637,219.90324 64.25423,285.275247 -37.495,347.29757 z"
+       style="fill:#00d224;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:#00d224;fill-opacity:1;stroke:none"
+       d="M 460.41891,7.0641832 C 422.8526,-218.18687 410.28931,-208.08038 464.83771,-422.33191 c 6.10159,-23.96542 -18.92398,-82.92994 -10.52346,-83.78457 142.68606,-14.51618 94.93841,21.9185 40.77123,177.1968 -92.49757,265.158072 10.51412,126.88333 -34.66657,335.9838632 z"
+       id="path4616"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssc"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/tentacle0.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
   </g>
