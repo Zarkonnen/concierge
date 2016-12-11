@@ -271,9 +271,19 @@ for (var i = 0; i < peopleList.length; i++) {
 var splash = true;
 var night = false;
 var intro = true;
+var epilogue = false;
 var managerOut = true;
 var introLine = 0;
 var introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
+var epilogueLines = [
+    "Everyone is dead! How could this happen?",
+    "One survivor? What happened?",
+    "Nearly everyone died in the night - we are ruined!",
+    "Half the guests died! Our reputation is in tatters!",
+    "Two guests dead? What a terrible tragedy!",
+    "Another guest died? What an unfortunate event!",
+    "Glad to see the night went quietly. Keep up the good work."
+];
 var assignGuest = false;
 var guestWait = 0;
 var managerX = 0;
@@ -548,7 +558,9 @@ function update(ms) {
             i--;
         }
     }
-    if (night) {
+    if (epilogue) {
+        animTick(manager, ms);
+    } else if (night) {
         if (people.vampire != animating) {
             animTick(people.vampire, ms);
         }
@@ -779,10 +791,15 @@ function update(ms) {
                         console.log("The vampire kills!");
                         kill(people.vampire.feedingRoom.occupant);
                     }
+                    return;
                 }
                 if (people.cultist.alive && people.cultist.moved && !people.cultist.neutralized) {
                     apocalypse = true;
+                    return;
                 }
+                epilogue = true;
+                managerX = 0;
+                animate(manager, "talking");
                 return;
             }
             if (!turnGuest.moved) {
@@ -1242,6 +1259,21 @@ function draw() {
     c.scale(scale, scale);
     if (splash) {
         img("logo", w / 2, h * 0.6);
+    } else if (epilogue) {
+        img("lobby-bg", w / 2, h / 2);
+        person(manager, w / 2, h / 2, false);
+        img("lobby-fg", w / 2, h * 0.8);
+        speech("Hotel Manager", epilogueLines[numSurvivors()], w / 2, h * 0.8);
+        c.fillStyle = "#b3a221";
+        c.fillRect(w / 2 - 100, 600, 200, 50);
+        c.fillStyle = "#dac739";
+        if (cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+            c.fillStyle = "#e2d363";
+        }
+        c.fillRect(w / 2 - 98, 602, 196, 46);
+        c.fillStyle = "black";
+        c.fillText("TRY AGAIN", w / 2 - c.measureText("TRY AGAIN").width / 2, 632);
+        return;
     } else if (night) {
         img("rooms-night", w / 2, h / 2);
         c.translate(w / 2 - 500, 0);
