@@ -22,19 +22,25 @@ var sGun = hwl("gun");
 var sInsomniac = hwl("insomniac");
 var sKnife = hwl("knife");
 var sMoans = hwl("moans", 0.4);
-var sSeduction = hwl("seduction");
+var sSeduction = hwl("seduction", 0.8);
 var sSnore = hwl("snore");
 var sTentacle = hwl("tentacle");
 var sTheft = hwl("theft");
-var sVampireDeath = hwl("vampireDeath");
+var sVampireDeath = hwl("vampiredeath");
 var sWerewolf = hwl("werewolf");
 var sDing = hwl("ding");
 var sPoof = hwl("poof");
-var sClick = hwl("click");
+var sClick = hwl("click", 0.6);
 var sDoor = hwl("door");
 var sSwish = hwl("swish");
+var sHiss = hwl("hiss");
+var sNight = hwl("night");
+var sStep = hwl("step", 0.3);
+var bgMusic = new Howl({src: ["sounds/bg.ogg", "sounds/bg.mp3"], volume: 0.25, loop: true});
+var playingMusic = null;
 
 // State
+var timeSinceStepSound = 0;
 var peopleList = [];
 var people = {};
 var splash = true;
@@ -302,7 +308,7 @@ function reset() {
             priority: 60,
             feeds: true,
             moveTo: -1,
-            weaponSound: sKnife
+            weaponSound: sHiss
         },
         {
             id: "thief",
@@ -496,8 +502,8 @@ function pickGuest() {
     var guestID = ids[Math.floor(Math.random() * ids.length)];
     /*if (!guestIDs.vampire) {
         guestID = "vampire";
-    } else if (!guestIDs.vamp) {
-        guestID = "vamp";
+    } else if (!guestIDs.priest) {
+        guestID = "priest";
     }
     /* else if (!guestIDs.vamp) {
         guestID = "vamp";
@@ -570,6 +576,8 @@ function input(ms) {
         if (click) {
             splash = false;
             click = null;
+            sDing.play();
+            playingMusic = bgMusic.play();
         }
         return;
     }
@@ -602,6 +610,8 @@ function input(ms) {
                         assignGuest = false;
                         night = true;
                         intertitle = "That night...";
+                        sNight.play();
+                        bgMusic.fade(0.25, 0, 1000, playingMusic);
                         intertitleT = 2000;
                         postAnimWait = 2000;
                     } else {
@@ -659,6 +669,7 @@ function disturbNearby(actor, room) {
 }
 
 function update(ms) {
+    timeSinceStepSound += ms;
     if (intertitle) {
         intertitleT -= ms;
         if (intertitleT <= 0) {
@@ -896,10 +907,12 @@ function update(ms) {
                             return;
                         }
                         if (room.occupant.disturbanceNeutralizes) {
-                            doAnim(room.occupant, "interrupted");
                             neutralize(room.occupant);
-                            if (room.occupant.disturbanceSound) {
-                                room.occupant.disturbanceSound.play();
+                            if (room.occupant.active) {
+                                doAnim(room.occupant, "interrupted");
+                                if (room.occupant.disturbanceSound) {
+                                    room.occupant.disturbanceSound.play();
+                                }
                             }
                             console.log(room.occupant.id + " neutralized by disturbance");
                             return;
@@ -943,6 +956,7 @@ function update(ms) {
                 }
                 epilogue = true;
                 intertitle = "The next morning...";
+                bgMusic.fade(0, 0.25, 1000, playingMusic);
                 intertitleT = 2000;
                 managerX = 0;
                 animate(manager, "talking");
@@ -1019,6 +1033,7 @@ function update(ms) {
                     //targetRoom.occupant.neutralized = true;
                     neutralize(targetRoom.occupant);
                     turnGuest.feeding = true;
+                    sHiss.play();
                     turnGuest.feedingRoom = targetRoom;
                     turnGuest.moved = true;
                     animate(turnGuest, "feeding");
@@ -1316,6 +1331,10 @@ function person(person, x, y, active) {
             bodyY -= Math.abs(Math.sin(t * 0.01)) * 50;
             headY -= Math.abs(Math.sin(t * 0.01 + 0.2)) * 50;
             toolY -= Math.abs(Math.sin(t * 0.01 + 0.4)) * 50;
+            if (Math.abs(Math.sin(t * 0.01) * 50) < 5 && timeSinceStepSound > 500) {
+                sStep.play();
+                timeSinceStepSound = 0;
+            }
             break;
         case "killing":
             bodyX += Math.abs(Math.sin(t * 0.005)) * 10;
