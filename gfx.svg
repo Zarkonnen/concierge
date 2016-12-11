@@ -47,9 +47,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="-725.06313"
-     inkscape:cy="392.11206"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-422.63672"
+     inkscape:cy="874.53846"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -4465,5 +4465,24 @@
          d="m 1099.4099,45.079698 21.9203,-14.84924"
          style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     </g>
+    <rect
+       style="fill:#2a2a2a;fill-opacity:1;stroke:none"
+       id="rect4610"
+       width="146"
+       height="86"
+       x="-516"
+       y="154.36218"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/suitcase.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:#2a2a2a;fill-opacity:1;stroke:none"
+       d="m -456.31802,161.77639 c -2.5496,-13.5895 -1.55616,-19.11109 5.48959,-26.15685 18.62139,-18.62139 22.00968,20.92389 28.82843,27.74264 16.28257,9.19061 0.30153,-22.00543 -1,-29 -2.29218,-13.7531 -26.13232,-11.31516 -33.5,-5 -11.91498,10.21284 -8.15023,40.74642 0.18198,32.41421 z"
+       id="path4612"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsc"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/suitcase.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
   </g>
 </svg>

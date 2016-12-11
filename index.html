@@ -24,7 +24,9 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 4,
-        alive: true
+        alive: true,
+        stealable: "suitcase",
+        stealingActivates: true
     },
     {
         id: "werewolf",
@@ -44,8 +46,8 @@ var peopleList = [
         alive: true,
         moved: false,
         neutralized: false,
-        priority: 1,
-        moveTo: -5,
+        priority: 2,
+        moveTo: -1,
         attacks: true,
         strength: 3
     },
@@ -64,7 +66,9 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 5,
-        alive: true
+        alive: true,
+        stealable: "murdereraxe",
+        stealingNeutralizes: true
     },
     {
         id: "suicide",
@@ -81,7 +85,9 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 1,
-        alive: true
+        alive: true,
+        stealable: "suicidegun",
+        stealingNeutralizes: true
     },
     {
         id: "cultist",
@@ -99,7 +105,9 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 1,
-        alive: true
+        alive: true,
+        stealable: "cultiststaff",
+        stealingNeutralizes: true
     },
     {
         id: "snorer",
@@ -148,8 +156,9 @@ var peopleList = [
         strength: 1,
         alive: true,
         neutralizes: {werewolf: 1, vampire: 1},
-        stealable: "cross",
-        neutralized: false
+        stealable: "priestcross",
+        neutralized: false,
+        stealingNeutralizes: true
     },
     {
         id: "vamp",
@@ -189,7 +198,8 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 6,
-        alive: true
+        alive: true,
+        killsIntruders: true
     },
     {
         id: "thief",
@@ -205,7 +215,10 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 1,
-        alive: true
+        alive: true,
+        steals: true,
+        priority: 1,
+        moveTo: 1
     },
     {
         id: "insomniac",
@@ -348,10 +361,13 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
-    if (!guestIDs.werewolf) {
-        guestID = "werewolf";
+    if (!guestIDs.thief) {
+        guestID = "thief";
     } else if (!guestIDs.priest) {
         guestID = "priest";
+    }
+     else if (!guestIDs.werewolf) {
+        guestID = "werewolf";
     }
     guestIDs[guestID] = 1;
     var guest = people[guestID];
@@ -408,6 +424,7 @@ function doMove(person, from, room, right) {
 }
 
 var animLengths = {
+    stealing: 600,
     activating: 385,
     deactivating: 385,
     walking: 100000,
@@ -492,6 +509,7 @@ function update(ms) {
             animating = animTick(animating, ms);
             if (!animating && deactivatePostAnim) {
                 a.active = false;
+                deactivatePostAnim = false;
             }
             if (moving) {
                 var tx = 0;
@@ -583,15 +601,60 @@ function update(ms) {
                 if (!turnGuest.active) {
                     turnGuest.active = true;
                     doAnim(turnGuest, "activating");
+                    console.log(turnGuest.id + " activating");
                     return;
                 }
                 if (turnGuest.moveTo && !targetRoom) {
+                    console.log(turnGuest.id + " moving");
                     targetRoom = rooms[(rooms.indexOf(turnGuestRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
                     doMove(turnGuest, turnGuestRoom, targetRoom, true);
                     return;
                 }
+                if (targetRoom && turnGuest.steals) {
+                    if (turnGuest.stolenItem) {
+                        console.log(turnGuest.id + " returning from theft");
+                        turnGuest.moved = true;
+                        return;
+                    }
+                    if (targetRoom.occupant.alive && !targetRoom.occupant.neutralized && targetRoom.occupant.killsIntruders) {
+                        console.log(turnGuest.id + " killed by room occupant");
+                        deactivatePostAnim = !targetRoom.occupant.active;
+                        targetRoom.occupant.active = true;
+                        targetRoom.occupant.xFlipForAnimation = true;
+                        doAnim(targetRoom.occupant, "killing");
+                        kill(turnGuest);
+                        turnGuest = null;
+                        targetRoom = null;
+                        return;
+                    }
+                    if (!targetRoom.occupant.stealable) {
+                        console.log(turnGuest.id + " nothing to steal in this room");
+                        var oldTargetRoom = targetRoom;
+                        targetRoom = rooms[(rooms.indexOf(targetRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
+                        if (targetRoom == turnGuestRoom) {
+                            // Nothing to steal. Sad.
+                            targetRoom = oldTargetRoom;
+                            turnGuest.moved = true;
+                            console.log(turnGuest.id + " giving up on theft");
+                            return;
+                        }
+                        
+                        doMove(turnGuest, oldTargetRoom, targetRoom, true);
+                        return;
+                    }
+                    console.log(turnGuest.id + " stealing");
+                    turnGuest.stolenItem = targetRoom.occupant.stealable;
+                    targetRoom.occupant.stolenFrom = true;
+                    if (targetRoom.occupant.stealingNeutralizes) {
+                        targetRoom.occupant.neutralized = true;
+                    }
+                    doAnim(turnGuest, "stealing");
+                    turnGuest.moved = true;
+                }
                 if (targetRoom && turnGuest.attacks) {
-                    if (targetRoom.occupant.neutralizes && targetRoom.occupant.neutralizes[turnGuest.id]) {
+                    console.log(turnGuest.id + " attacking");
+                    if (targetRoom.occupant.neutralizes && targetRoom.occupant.neutralizes[turnGuest.id] && !targetRoom.occupant.neutralized) {
+                        console.log(turnGuest.id + " neutralized");
                         deactivatePostAnim = !targetRoom.occupant.active;
                         targetRoom.occupant.active = true;
                         targetRoom.occupant.xFlipForAnimation = true;
@@ -599,31 +662,37 @@ function update(ms) {
                         neutralize(turnGuest);
                         turnGuest.moved = true;
                     } else {
-                        if (turnGuest.strength > targetRoom.occupant.strength) {
+                        if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
+                            console.log(turnGuest.id + " victory");
                             doAnim(turnGuest, "killing");
                             turnGuest.moved = true;
                             kill(targetRoom.occupant);
                         } else {
+                            console.log(turnGuest.id + " defeat");
                             deactivatePostAnim = !targetRoom.occupant.active;
                             targetRoom.occupant.active = true;
                             targetRoom.occupant.xFlipForAnimation = true;
                             doAnim(targetRoom.occupant, "killing");
                             kill(turnGuest);
                             turnGuest = null;
+                            targetRoom = null;
                         }
                     }
                     return;
                 }
             } else {
                 if (targetRoom) {
+                    console.log(turnGuest.id + " going home");
                     doMove(turnGuest, targetRoom, turnGuestRoom, false);
                     targetRoom = null;
                     return;
                 }
                 if (turnGuest.active) {
+                    console.log(turnGuest.id + " deactivating");
                     doAnim(turnGuest, "deactivating");
                     turnGuest.active = false;
                 }
+                console.log(turnGuest.id + " turn done");
                 turnGuest = null;
                 return;
             }
@@ -668,6 +737,9 @@ function person(person, x, y, active) {
     var body = active && person.activeBody ? person.activeBody : person.body;
     var head = active && person.activeHead ? person.activeHead : person.head;
     var tool = active && person.activeTool ? person.activeTool : person.tool;
+    var stolen = person.stolenItem;
+    var stolenX = x + 100;
+    var stolenY = y + 40;
     if (!person.alive) {
         body = "deadbody";
         head = person.deadHead;
@@ -677,6 +749,10 @@ function person(person, x, y, active) {
     }
     var t = person.animationT;
     switch (person.animation) {
+        case "stealing":
+            stolenY = y + 170 - t * 0.7;
+            tool = null;
+            break;
         case "activating":
             bodyY += Math.sin(t * 0.008) * 80;
             headY -= Math.sin(t * 0.008) * 80;
@@ -717,6 +793,7 @@ function person(person, x, y, active) {
         case "neutralizing":
             toolX -= 40;
             toolY -= 40 + Math.sin(t * 0.005) * 10;
+            headX -= Math.sin(t * 0.005) * 20;
             break;
         case "seducing":
             bodyX += Math.sin(t * 0.005) * 10;
@@ -740,6 +817,7 @@ function person(person, x, y, active) {
     img(body, bodyX, bodyY);
     img(head, headX, headY);
     img(tool, toolX, toolY);
+    img(stolen, stolenX, stolenY);
 }
 
 var images = {};
