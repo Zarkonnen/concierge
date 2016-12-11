@@ -281,7 +281,8 @@ var manager = {
     head: "managerhead",
     body: "managerbody",
     animation: "talking",
-    animationT: 0
+    animationT: 0,
+    alive: true
 };
 var guestIDs = {};
 var guest = pickGuest();
@@ -470,10 +471,10 @@ function input(ms) {
         }
         return;
     }
-    if (!night) {
+    /*if (!night) {
         instaNight();
         return;
-    }
+    }*/
     if (night) {
         // Just watch.
     } else if (assignGuest) {
@@ -862,6 +863,7 @@ function update(ms) {
                     animate(turnGuest, "summoning"); // In the BG
                     turnGuest.moved = true;
                     turnGuest = null;
+                    postAnimWait = 2000;
                     return;
                 }
                 if (turnGuest.fucks) {
