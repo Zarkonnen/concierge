@@ -48,8 +48,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="60.72908"
-     inkscape:cy="368.93594"
+     inkscape:cx="-2428.2868"
+     inkscape:cy="538.64157"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -3552,5 +3552,129 @@
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
     </g>
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="294.3053"
+       x="-2818.6975"
+       height="376.25766"
+       width="715.93195"
+       id="rect3341-6"
+       style="fill:#3d3c41;fill-opacity:1;stroke:none" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       transform="matrix(0,1,1,0,0,0)"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3343-7"
+       width="59.05555"
+       height="526.71991"
+       x="452.90656"
+       y="-2818.6975" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3345-5"
+       width="134.15298"
+       height="90.869553"
+       x="305.59332"
+       y="2286.9619"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2389.3271"
+       x="305.59332"
+       height="90.869553"
+       width="134.15298"
+       id="rect3347-3"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3349-5"
+       width="134.15298"
+       height="90.869553"
+       x="305.59332"
+       y="2491.6921"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <g
+       transform="matrix(0,0.63978204,-0.63978204,0,-1122.2331,363.81047)"
+       id="g3351-6"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <rect
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         y="1820.509"
+         x="252.13496"
+         height="142.03206"
+         width="209.68546"
+         id="rect3353-2"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <rect
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3355-9"
+         width="209.68546"
+         height="142.03206"
+         x="252.13496"
+         y="1980.509"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         y="2140.5088"
+         x="252.13496"
+         height="142.03206"
+         width="209.68546"
+         id="rect3357-1"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+    </g>
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2311.3911"
+       x="413.26324"
+       height="42.010986"
+       width="134.15298"
+       id="rect3359-2"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3361-7"
+       width="134.15298"
+       height="42.010986"
+       x="413.26324"
+       y="2413.7563"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2516.1216"
+       x="413.26324"
+       height="42.010986"
+       width="134.15298"
+       id="rect3363-0"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
   </g>
 </svg>
