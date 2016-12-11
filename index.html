@@ -13,6 +13,7 @@ var peopleList = [
         id: "spy",
         head: "spyhead",
         activeHead: "spyactivehead",
+        deadHead: "spydeadhead",
         body: "spybody",
         activeTool: "spygun",
         name: "Septimus Smith",
@@ -21,12 +22,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 4,
+        alive: true
     },
     {
         id: "werewolf",
         head: "werewolfhead",
         activeHead: "werewolfactivehead",
+        deadHead: "werewolfdeadhead",
         body: "werewolfbody",
         activeBody: "werewolfactivebody",
         activeTool: "werewolfclaw",
@@ -49,6 +53,7 @@ var peopleList = [
         id: "murderer",
         head: "murdererhead",
         activeHead: "murdereractivehead",
+        deadHead: "murdererdeadhead",
         body: "murdererbody",
         activeTool: "murdereraxe",
         name: "Mr. Grushko",
@@ -57,12 +62,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 5,
+        alive: true
     },
     {
         id: "suicide",
         head: "suicidehead",
         activeHead: "suicideactivehead",
+        deadHead: "suicidedeadhead",
         body: "suicidebody",
         activeTool: "suicidegun",
         name: "Werther Junge",
@@ -71,12 +79,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "cultist",
         head: "cultisthead",
         activeHead: "cultistactivehead",
+        deadHead: "cultistdeadhead",
         body: "cultistbody",
         activeBody: "cultistactivebody",
         activeTool: "cultiststaff",
@@ -86,12 +97,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "snorer",
         head: "snorerhead",
         activeHead: "snoreractivehead",
+        deadHead: "snorerdeadhead",
         body: "snorerbody",
         name: "Mr. O'Doul",
         intro: "Can't wait for a good night's sleep, eh?",
@@ -99,11 +113,14 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "granny",
         head: "grannyhead",
+        deadHead: "grannydeadhead",
         body: "grannybody",
         name: "Mrs. Spelt",
         intro: "Hello, dearie.",
@@ -111,11 +128,14 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 7,
+        alive: true
     },
     {
         id: "priest",
         head: "priesthead",
+        deadHead: "priestdeadhead",
         body: "priestbody",
         activeTool: "priestcross",
         name: "Father Rumbucket",
@@ -124,12 +144,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "vamp",
         head: "vamphead",
         activeHead: "vampactivehead",
+        deadHead: "vampdeadhead",
         body: "vampbody",
         activeBody: "vampactivebody",
         name: "Raquelle",
@@ -138,12 +161,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "vampire",
         head: "vampirehead",
         activeHead: "vampireactivehead",
+        deadHead: "vampdeadhead",
         body: "vampirebody",
         name: "A.L. Ucard",
         intro: "Hello, my friend. One room please. I won't be needing dinner.",
@@ -158,11 +184,14 @@ var peopleList = [
         },
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 6,
+        alive: true
     },
     {
         id: "thief",
         head: "thiefhead",
+        deadHead: "thiefdeadhead",
         body: "thiefbody",
         activeTool: "thiefcrowbar",
         name: "T. Felofavan", // It fell off a van
@@ -171,12 +200,15 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 1,
+        alive: true
     },
     {
         id: "insomniac",
         head: "insomniachead",
         activeHead: "insomniacactivehead",
+        deadHead: "insomniacdeadhead",
         body: "insomniacbody",
         activeTool: "insomniacknife",
         name: "S. Onpyh",
@@ -185,7 +217,9 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        strength: 2,
+        alive: true
     },
 ];
 var people = {};
@@ -220,6 +254,9 @@ var movingFrom = null;
 var movingTo = null;
 var movingToRight = false;
 var movingToState = 0;
+var toKill = null;
+var postAnimWait = 0;
+var deactivatePostAnim = false;
 var particles = [];
 var rooms = [
     {
@@ -278,6 +315,14 @@ var rooms = [
     }
 ];
 
+function numSurvivors() {
+    var n = 0;
+    for (var i = 0; i < rooms.length; i++) {
+        if (rooms[i].occupant.alive) { n++; }
+    }
+    return n;
+}
+
 function instaNight() {
     guestIDs = {};
     for (var i = 0; i < rooms.length; i++) {
@@ -326,6 +371,7 @@ function animTick(person, ms) {
 function doAnim(person, animation) {
     animate(person, animation);
     animating = person;
+    postAnimWait = animation == "killing" ? 0 : 500;
 }
 
 var MT_START = 0;
@@ -335,6 +381,10 @@ var MT_TRG_CORRIDOR = 3;
 var MT_TRG_CENTER = 4;
 var MT_END = 5;
 
+function kill(person) {
+    toKill = person;
+}
+
 function doMove(person, from, room, right) {
     animate(person, "moving");
     animating = person;
@@ -343,10 +393,12 @@ function doMove(person, from, room, right) {
     movingTo = room;
     movingToRight = right;
     movingToState = MT_START;
+    postAnimWait = 500;
 }
 
 var animLengths = {
     activating: 385,
+    deactivating: 385,
     walking: 100000,
     standing: 100000,
     killing: 1000,
@@ -425,7 +477,11 @@ function update(ms) {
     }
     if (night) {
         if (animating) {
+            var a = animating;
             animating = animTick(animating, ms);
+            if (!animating && deactivatePostAnim) {
+                a.active = false;
+            }
             if (moving) {
                 var tx = 0;
                 var ty = 0;
@@ -453,7 +509,7 @@ function update(ms) {
                     case MT_END:
                         break;
                 }
-                var spd = ms * 0.08;
+                var spd = ms * 0.3;// qqDPS 0.08;
                 var distSq = (moving.x - tx) * (moving.x - tx) + (moving.y - ty) * (moving.y - ty);
                 if (distSq < spd * spd) {
                     moving.x = tx;
@@ -470,6 +526,26 @@ function update(ms) {
                     moving.y += Math.sin(angle) * spd;
                 }
             }
+        } else if (postAnimWait > 0) {
+            postAnimWait -= ms;
+        } else if (toKill) {
+            toKill.alive = false;
+            for (var i = 0; i < 30; i++) {
+                var angle = Math.random() * Math.PI * 2;
+                var dist = Math.random() * 20;
+                var speed = Math.random() * 0.5;
+                particles.push({
+                    color: "#cf0000",
+                    size: 30,
+                    x: toKill.x + Math.cos(angle) * dist,
+                    y: toKill.y + Math.sin(angle) * dist,
+                    dx: Math.cos(angle) * speed,
+                    dy: Math.sin(angle) * speed,
+                    life: 500 * Math.random()
+                });
+            }
+            postAnimWait = 1000;
+            toKill = null;
         } else {
             if (!turnGuest) {
                 for (var i = 0; i < rooms.length; i++) {
@@ -484,14 +560,40 @@ function update(ms) {
                 // qqDPS Final Score
                 return;
             }
-            if (!turnGuest.active) {
-                turnGuest.active = true;
-                doAnim(turnGuest, "activating");
-                return;
-            }
-            if (turnGuest.moveTo && !targetRoom) {
-                targetRoom = rooms[(rooms.indexOf(turnGuestRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
-                doMove(turnGuest, turnGuestRoom, targetRoom, true);
+            if (!turnGuest.moved) {
+                if (!turnGuest.active) {
+                    turnGuest.active = true;
+                    doAnim(turnGuest, "activating");
+                    return;
+                }
+                if (turnGuest.moveTo && !targetRoom) {
+                    targetRoom = rooms[(rooms.indexOf(turnGuestRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
+                    doMove(turnGuest, turnGuestRoom, targetRoom, true);
+                    return;
+                }
+                if (targetRoom && turnGuest.attacks) {
+                    if (turnGuest.strength > targetRoom.occupant.strength) {
+                        doAnim(turnGuest, "killing");
+                        turnGuest.moved = true;
+                        kill(targetRoom.occupant);
+                    } else {
+                        deactivatePostAnim = !targetRoom.occupant.active;
+                        targetRoom.occupant.active = true;
+                        doAnim(targetRoom.occupant, "killing");
+                        kill(turnGuest);
+                        turnGuest = null;
+                    }
+                    return;
+                }
+            } else {
+                if (targetRoom) {
+                    doMove(turnGuest, targetRoom, turnGuestRoom, false);
+                    targetRoom = null;
+                    return;
+                }
+                doAnim(turnGuest, "deactivating");
+                turnGuest.active = false;
+                turnGuest = null;
                 return;
             }
         }
@@ -535,12 +637,32 @@ function person(person, x, y, active) {
     var body = active && person.activeBody ? person.activeBody : person.body;
     var head = active && person.activeHead ? person.activeHead : person.head;
     var tool = active && person.activeTool ? person.activeTool : person.tool;
+    if (!person.alive) {
+        body = "deadbody";
+        head = person.deadHead;
+        tool = null;
+        bodyY -= 50;
+        headY += 50;
+    }
     var t = person.animationT;
     switch (person.animation) {
         case "activating":
             bodyY += Math.sin(t * 0.008) * 80;
             headY -= Math.sin(t * 0.008) * 80;
             if (t % 385 < 385 / 2) {
+                body = person.body;
+                head = person.head;
+                tool = person.tool;
+            } else {
+                body = person.activeBody ? person.activeBody : person.body;
+                head = person.activeHead ? person.activeHead : person.head;
+                tool = person.activeTool ? person.activeTool : person.tool;
+            }
+            break;
+        case "deactivating":
+            bodyY += Math.sin(t * 0.008) * 80;
+            headY -= Math.sin(t * 0.008) * 80;
+            if (t % 385 > 385 / 2) {
                 body = person.body;
                 head = person.head;
                 tool = person.tool;
@@ -643,6 +765,7 @@ function draw() {
     if (night) {
         img("rooms-night", w / 2, h / 2);
         c.translate(w / 2 - 500, 0);
+        text("Survivors: " + numSurvivors(), 100, 350);
         for (var i = 0; i < rooms.length; i++) {
             var room = rooms[i];
             var occupant = room.occupant;
@@ -652,6 +775,13 @@ function draw() {
             c.resetTransform();
             c.scale(scale, scale);
             c.translate(w / 2 - 500, 0);
+        }
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            c.fillStyle = p.color;
+            c.beginPath();
+            c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            c.fill();
         }
     } else if (assignGuest) {
         img("rooms", w / 2, h / 2);
@@ -701,7 +831,7 @@ function draw() {
         }
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
-            c.fillColor = p.color;
+            c.fillStyle = p.color;
             c.beginPath();
             c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             c.fill();

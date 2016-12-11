@@ -47,9 +47,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="-2428.2868"
-     inkscape:cy="538.64157"
+     inkscape:zoom="1"
+     inkscape:cx="-725.06313"
+     inkscape:cy="392.11206"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -3423,23 +3423,24 @@
          y="2326.3623"
          style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Milkyway Hotel Personal Use;-inkscape-font-specification:Milkyway Hotel Personal Use">Concierge</tspan></text>
     <g
-       id="g3389"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+       id="g4275"
+       transform="matrix(1,0,0,0.9,0,116.60591)"
        inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180">
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png">
       <rect
          style="fill:#ddc3ac;fill-opacity:1;stroke:none"
          id="rect3341"
          width="715.93195"
-         height="376.25766"
+         height="400"
          x="-2825.595"
-         y="697.93011"
+         y="766.05914"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
       <rect
          y="-2825.595"
-         x="856.53137"
+         x="936.53137"
          height="526.71991"
          width="59.05555"
          id="rect3343"
@@ -3454,7 +3455,7 @@
          inkscape:export-xdpi="180"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          y="2293.8594"
-         x="709.21814"
+         x="789.21814"
          height="90.869553"
          width="134.15298"
          id="rect3345"
@@ -3465,7 +3466,7 @@
          id="rect3347"
          width="134.15298"
          height="90.869553"
-         x="709.21814"
+         x="789.21814"
          y="2396.2246"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          inkscape:export-xdpi="180"
@@ -3476,7 +3477,7 @@
          inkscape:export-xdpi="180"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          y="2498.5896"
-         x="709.21814"
+         x="789.21814"
          height="90.869553"
          width="134.15298"
          id="rect3349"
@@ -3486,7 +3487,7 @@
          inkscape:export-xdpi="180"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          id="g3351"
-         transform="matrix(0,0.63978204,-0.63978204,0,-1129.1305,767.4353)">
+         transform="matrix(0,0.63978204,-0.63978204,0,-1129.1305,847.4353)">
         <rect
            style="fill:#a18f81;fill-opacity:1;stroke:none"
            id="rect3353"
@@ -3524,7 +3525,7 @@
          id="rect3359"
          width="134.15298"
          height="42.010986"
-         x="816.88806"
+         x="896.88806"
          y="2318.2886"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          inkscape:export-xdpi="180"
@@ -3535,7 +3536,7 @@
          inkscape:export-xdpi="180"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          y="2420.6538"
-         x="816.88806"
+         x="896.88806"
          height="42.010986"
          width="134.15298"
          id="rect3361"
@@ -3546,135 +3547,923 @@
          id="rect3363"
          width="134.15298"
          height="42.010986"
-         x="816.88806"
+         x="896.88806"
          y="2523.019"
          inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
     </g>
-    <rect
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       y="294.3053"
-       x="-2818.6975"
-       height="376.25766"
-       width="715.93195"
-       id="rect3341-6"
-       style="fill:#3d3c41;fill-opacity:1;stroke:none" />
-    <rect
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       transform="matrix(0,1,1,0,0,0)"
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       id="rect3343-7"
-       width="59.05555"
-       height="526.71991"
-       x="452.90656"
-       y="-2818.6975" />
-    <rect
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       id="rect3345-5"
-       width="134.15298"
-       height="90.869553"
-       x="305.59332"
-       y="2286.9619"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       y="2389.3271"
-       x="305.59332"
-       height="90.869553"
-       width="134.15298"
-       id="rect3347-3"
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       id="rect3349-5"
-       width="134.15298"
-       height="90.869553"
-       x="305.59332"
-       y="2491.6921"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       transform="matrix(0,1,-1,0,0,0)" />
     <g
-       transform="matrix(0,0.63978204,-0.63978204,0,-1122.2331,363.81047)"
-       id="g3351-6"
+       id="g4289"
+       transform="matrix(1,0,0,0.9,0,68.243433)"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180">
       <rect
-         inkscape:export-ydpi="180"
-         inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
-         y="1820.509"
-         x="252.13496"
-         height="142.03206"
-         width="209.68546"
-         id="rect3353-2"
-         style="fill:#a18f81;fill-opacity:1;stroke:none" />
-      <rect
-         style="fill:#a18f81;fill-opacity:1;stroke:none"
-         id="rect3355-9"
-         width="209.68546"
-         height="142.03206"
-         x="252.13496"
-         y="1980.509"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         style="fill:#3d3c41;fill-opacity:1;stroke:none"
+         id="rect3341-6"
+         width="715.93195"
+         height="400"
+         x="-2818.6975"
+         y="282.43433"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
       <rect
+         y="-2818.6975"
+         x="452.90656"
+         height="526.71991"
+         width="59.05555"
+         id="rect3343-7"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         transform="matrix(0,1,1,0,0,0)"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
          inkscape:export-ydpi="180"
          inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
-         y="2140.5088"
-         x="252.13496"
-         height="142.03206"
-         width="209.68546"
-         id="rect3357-1"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         y="2286.9619"
+         x="305.59332"
+         height="90.869553"
+         width="134.15298"
+         id="rect3345-5"
          style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3347-3"
+         width="134.15298"
+         height="90.869553"
+         x="305.59332"
+         y="2389.3271"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         y="2491.6921"
+         x="305.59332"
+         height="90.869553"
+         width="134.15298"
+         id="rect3349-5"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <g
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         id="g3351-6"
+         transform="matrix(0,0.63978204,-0.63978204,0,-1122.2331,363.81047)">
+        <rect
+           style="fill:#a18f81;fill-opacity:1;stroke:none"
+           id="rect3353-2"
+           width="209.68546"
+           height="142.03206"
+           x="252.13496"
+           y="1820.509"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           inkscape:export-xdpi="180"
+           inkscape:export-ydpi="180" />
+        <rect
+           inkscape:export-ydpi="180"
+           inkscape:export-xdpi="180"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           y="1980.509"
+           x="252.13496"
+           height="142.03206"
+           width="209.68546"
+           id="rect3355-9"
+           style="fill:#a18f81;fill-opacity:1;stroke:none" />
+        <rect
+           style="fill:#a18f81;fill-opacity:1;stroke:none"
+           id="rect3357-1"
+           width="209.68546"
+           height="142.03206"
+           x="252.13496"
+           y="2140.5088"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           inkscape:export-xdpi="180"
+           inkscape:export-ydpi="180" />
+      </g>
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3359-2"
+         width="134.15298"
+         height="42.010986"
+         x="413.26324"
+         y="2311.3911"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         y="2413.7563"
+         x="413.26324"
+         height="42.010986"
+         width="134.15298"
+         id="rect3361-7"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3363-0"
+         width="134.15298"
+         height="42.010986"
+         x="413.26324"
+         y="2516.1216"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
     </g>
-    <rect
+    <path
+       style="fill:#cf0000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m -998.43478,604.05648 c -55.43932,-30.37068 8.75991,-42.97565 18.38478,-62.22539 6.72796,-13.45592 -30.8232,-25.16639 -33.9411,-28.28427 -7.3316,-7.33154 32.4515,-36.78212 41.01217,-35.35534 42.9669,7.16115 10.29082,49.49747 43.84062,49.49747 15.98751,0 89.3531,9.3842 72.12489,43.84062 -9.36946,18.73892 -44.04718,5.86342 -56.56854,18.38478 -17.36853,17.36853 40.33278,34.62053 11.31371,63.63961 -26.61902,26.61901 -41.68381,-22.08822 -55.15433,-25.45585 -35.15678,-8.78919 -39.60486,49.4906 -77.78172,11.31371 -12.0232,-12.02312 39.17415,-18.52296 36.76952,-35.35534 z"
+       id="path4305"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssssssssc"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/deadbody.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
        inkscape:export-ydpi="180"
        inkscape:export-xdpi="180"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       y="2311.3911"
-       x="413.26324"
-       height="42.010986"
-       width="134.15298"
-       id="rect3359-2"
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       id="rect3361-7"
-       width="134.15298"
-       height="42.010986"
-       x="413.26324"
-       y="2413.7563"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       transform="translate(-957.5412,-441.14928)"
+       sodipodi:type="arc"
+       style="fill:#744718;fill-opacity:1;stroke:none"
+       id="path4307"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
        inkscape:export-ydpi="180"
        inkscape:export-xdpi="180"
-       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-       y="2516.1216"
-       x="413.26324"
-       height="42.010986"
-       width="134.15298"
-       id="rect3363-0"
-       style="fill:#a18f81;fill-opacity:1;stroke:none"
-       transform="matrix(0,1,-1,0,0,0)" />
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       inkscape:connector-curvature="0"
+       id="path4309"
+       d="m -832.0412,255.2129 c -3.44235,4.1596 -11.92698,-2.85396 -14.5,-8 -9.07589,-18.15178 40.493,-37.66433 52,-41.5 6.77805,-2.25935 12.67014,5.72338 18,7.5 5.95017,1.98339 32.92077,-5.7723 39.5,3 3.47038,4.62718 -1.33239,12.83522 1,17.5 8.77411,17.54823 20.44544,11.58184 6.5,32.5 -2.73249,4.09874 0.41165,10.29834 -8,11.5 -11.19798,1.59971 -9.36967,-22.29448 -21.5,-24.5 -4.37819,-0.79603 -23.78549,-4.71451 -27,-1.5 -1.17494,1.17494 -1.26375,4.55275 -3.5,5 -5.41538,1.08308 -14.52812,-3.63203 -20,-5 -2.27134,-0.56783 -18.12704,3.5 -22.5,3.5 z"
+       style="fill:#363636;fill-opacity:1;stroke:none" />
+    <g
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       transform="matrix(1.1126761,0,0,1,-259.02007,-148.64928)"
+       id="g4311">
+      <rect
+         style="fill:#e3e3e3;fill-opacity:1;stroke:none"
+         id="rect4313"
+         width="64"
+         height="24"
+         x="-507"
+         y="465.11218" />
+      <rect
+         style="fill:#0a0a0a;fill-opacity:1;stroke:none"
+         id="rect4315"
+         width="71"
+         height="26.5"
+         x="-510.5"
+         y="469.36218" />
+      <rect
+         y="467.11218"
+         x="-487"
+         height="24"
+         width="14.5"
+         id="rect4317"
+         style="fill:#e3e3e3;fill-opacity:1;stroke:none" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -821.60783,270.30208 18.38478,21.92031"
+       id="path4319"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -800.39462,271.7163 -24.04163,16.26345"
+       id="path4321"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -771.4535,268.88787 12.72792,26.16295"
+       id="path4323"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -775.69614,288.68686 21.92031,-14.84924"
+       id="path4325"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/insomniacdeadhead.png"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z"
+       sodipodi:ry="53.5"
+       sodipodi:rx="53.5"
+       sodipodi:cy="713.86218"
+       sodipodi:cx="170.5"
+       id="path4341"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       sodipodi:type="arc"
+       transform="translate(-653.08954,289.27922)" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/insomniacdeadhead.png"
+       sodipodi:nodetypes="csscc"
+       style="fill:#543818;fill-opacity:1;stroke:none"
+       d="m -524.89149,946.88962 c 10.11573,-7.22535 73.92146,-15.1539 80.61522,-5.5916 12.78766,18.26765 37.87019,25.64948 20.8995,54.68183 -18.25524,31.22985 -45.90263,-24.39081 -87,-18.5199 -29.75758,19.62958 -38.36324,-11.86113 -14.51472,-30.57033 z"
+       id="path4343"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g4370"
+       transform="matrix(0.98174366,0.1902088,-0.1902088,0.98174366,183.117,110.86874)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/insomniacdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-9"
+         d="m -518.50179,997.69492 18.38478,21.92028"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-3"
+         d="m -497.28858,999.10914 -24.04163,16.26346"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-6"
+         d="m -468.34746,996.28071 12.72792,26.16299"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-0"
+         d="m -472.5901,1016.0797 21.92031,-14.8492"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/thiefdeadhead.png"
+       transform="translate(-465.95541,377.16652)"
+       sodipodi:type="arc"
+       style="fill:#f1c276;fill-opacity:1;stroke:none"
+       id="path4376"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/thiefdeadhead.png"
+       inkscape:connector-curvature="0"
+       id="path4378"
+       d="m -354,1071.3622 c 6.43729,-10.1879 2.99474,-24.9948 12,-34 10.11573,-10.1157 92.30624,-18.3875 99,-5 12.78766,25.5753 11,34.0638 11,61 0,7.8251 -45.90263,-41.2195 -87,-33 -24.1445,4.8289 -12.47253,27.091 -35,11 z"
+       style="fill:#ad8c4d;fill-opacity:1;stroke:none" />
+    <g
+       id="g4393"
+       transform="translate(-102,-4)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/thiefdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-6"
+         d="m -217.50179,1087.6949 18.38478,21.9203"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-2"
+         d="m -196.28858,1089.1091 -24.04163,16.2635"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-61"
+         d="m -167.34746,1086.2807 12.72792,26.163"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-8"
+         d="m -171.5901,1106.0797 21.92031,-14.8492"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <g
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/spydeadhead.png"
+       transform="translate(-275,-112)"
+       id="g4399">
+      <g
+         id="g4401"
+         transform="translate(-34,-26)">
+        <path
+           d="m 224,713.86218 c 0,29.54724 -23.95277,53.5 -53.5,53.5 -29.54723,0 -53.5,-23.95276 -53.5,-53.5 0,-29.54723 23.95277,-53.5 53.5,-53.5 29.54723,0 53.5,23.95277 53.5,53.5 z"
+           sodipodi:ry="53.5"
+           sodipodi:rx="53.5"
+           sodipodi:cy="713.86218"
+           sodipodi:cx="170.5"
+           id="path4403"
+           style="fill:#eac086;fill-opacity:1;stroke:none"
+           sodipodi:type="arc" />
+        <path
+           sodipodi:nodetypes="csssssssssssc"
+           inkscape:connector-curvature="0"
+           id="path4405"
+           d="m 105,673.36218 c 2.38768,-44.86386 27.2677,-12.66731 31,-15 11.82749,-7.39218 20.30055,-25.65027 31,-31 12.1056,-6.0528 22.70017,7.70018 29,14 2.68742,2.68742 -6.39935,12.69968 -3,11 17.23219,-8.61609 33.40526,-6.98686 41,12 1.06494,2.66236 -7.56472,5.71764 -5,7 5.19075,2.59538 30.96901,10.03099 19,22 -11.03862,11.03862 -21.62438,11.84391 -41,7 -5.94528,-1.48632 -16.18622,-13.06207 -22,-15 -10.65805,-3.55268 -45.54009,2 -52,2 -11.02576,0 -10.22464,21.77537 -22,10 -13.405463,-13.40546 -6,-11.75348 -6,-24 z"
+           style="fill:#000000;fill-opacity:1;stroke:none" />
+      </g>
+      <path
+         style="fill:#700d0d;fill-opacity:1;stroke:none"
+         d="m 89.5,722.86218 44,20 -47,11.5 z"
+         id="path4407"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#700d0d;fill-opacity:1;stroke:none"
+         d="m 134,742.36218 42.5,-18 -6,35 z"
+         id="path4409"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#700d0d;fill-opacity:1;stroke:none"
+         id="path4411"
+         sodipodi:cx="132.75"
+         sodipodi:cy="780.11218"
+         sodipodi:rx="5.75"
+         sodipodi:ry="5.75"
+         d="m 138.5,780.11218 c 0,3.17564 -2.57436,5.75 -5.75,5.75 -3.17564,0 -5.75,-2.57436 -5.75,-5.75 0,-3.17563 2.57436,-5.75 5.75,-5.75 3.17564,0 5.75,2.57437 5.75,5.75 z"
+         transform="matrix(1.7378506,0,0,1.7685943,-98.010321,-636.76658)" />
+    </g>
+    <g
+       id="g4426"
+       transform="translate(-48,-95)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/spydeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-7"
+         d="m -128.50179,667.69492 18.38478,21.92031"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-9"
+         d="m -107.28858,669.10914 -24.04163,16.26345"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-2"
+         d="m -78.34746,666.28071 12.72792,26.16295"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-02"
+         d="m -82.5901,686.0797 21.92031,-14.84924"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/murdererdeadhead.png"
+       transform="translate(76.372583,-617.40202)"
+       sodipodi:type="arc"
+       style="fill:#e8c9a1;fill-opacity:1;stroke:none"
+       id="path4433"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/murdererdeadhead.png"
+       sodipodi:nodetypes="csssssssssssssssssssssssc"
+       inkscape:connector-curvature="0"
+       id="path4435"
+       d="M 196.65733,78.56802 C 194.7185,46.30535 183.5917,60.88599 192.50097,32.94448 c 1.66831,-5.23219 19.82291,6.51765 14.54726,6.51765 -4.95917,0 -7.82195,-13.56841 -3.11727,-15.20785 6.95993,-2.42532 9.25267,15.20785 15.58635,15.20785 5.42145,0 3.44009,-19.21546 7.27363,-15.20785 3.80212,3.97478 1.75169,21.32186 4.15636,16.29413 2.48094,-5.1872 10.63755,-7.19638 14.54726,-13.0353 3.83611,-5.72902 0.58424,-19.55295 7.27363,-19.55295 7.33715,0 -6.38474,22.65475 -4.15636,24.98432 2.35901,2.46615 15.59706,-12.9681 16.62544,-6.51765 0.66648,4.18051 -8.13171,12.7802 -4.15636,11.94903 5.64353,-1.17996 37.40724,-3.60848 37.40724,-9.77648 0,-3.41596 -2.58138,6.64063 -5.19545,8.6902 -5.78582,4.53643 -28.01407,6.51765 -20.7818,6.51765 9.35822,0 36.74432,-2.54711 28.05543,1.08627 -1.66865,0.69778 -19.16127,6.03923 -18.70362,6.51765 1.35219,1.41359 26.67495,4.30593 39.48542,9.77648 6.49396,2.77316 -37.97766,5.43137 -31.1727,5.43137 8.10834,0 26.42048,13.65821 15.58635,24.98432 -3.87246,4.04831 -4.45349,-11.56119 -9.35181,-14.12157 -8.2379,-4.30598 -18.86017,-1.08628 -28.05543,-1.08628 -13.74502,0 -42.44605,-6.51764 -35.32906,-6.51764 6.45234,0 6.48752,28.50761 4.15636,26.07059 -14.27646,-14.92474 -12.09705,-28.52477 -40.52451,-17.3804 z"
+       style="fill:#c2c2c2;fill-opacity:1;stroke:none" />
+    <g
+       id="g4462"
+       transform="matrix(0.99412686,-0.10822105,0.10822105,0.99412686,12.138012,13.576771)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/murdererdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-3"
+         d="m 188.49821,100.69492 18.38478,21.92031"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-7"
+         d="m 209.71142,102.10914 -24.04163,16.26345"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-5"
+         d="m 238.65254,99.280708 12.72792,26.162952"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-9"
+         d="m 234.4099,119.0797 21.92031,-14.84924"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <g
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/werewolfdeadhead.png"
+       id="g4468"
+       transform="translate(32,354)">
+      <path
+         d="m 224,713.86218 c 0,29.54724 -23.95277,53.5 -53.5,53.5 -29.54723,0 -53.5,-23.95276 -53.5,-53.5 0,-29.54723 23.95277,-53.5 53.5,-53.5 29.54723,0 53.5,23.95277 53.5,53.5 z"
+         sodipodi:ry="53.5"
+         sodipodi:rx="53.5"
+         sodipodi:cy="713.86218"
+         sodipodi:cx="170.5"
+         id="path4470"
+         style="fill:#eac086;fill-opacity:1;stroke:none"
+         sodipodi:type="arc"
+         transform="translate(420,-97)" />
+      <path
+         style="fill:#471d13;fill-opacity:1;stroke:none"
+         d="m 557.58534,605.91043 c -3.76399,4.54943 -22.16166,9.86718 -32.44412,6.45668 -6.2298,-2.06632 -5.67772,-22.48864 -5.67772,-25.01961 0,-2.43615 9.48974,-0.28239 7.29993,0.80708 -9.92662,4.93873 -17.42778,-9.53227 -12.16654,-16.94876 3.76789,-5.3114 20.76623,-2.25585 17.84426,-8.07085 -5.55051,-11.04602 4.60212,-18.14994 17.84426,-20.1771 6.16934,-0.94443 24.08619,5.64959 17.84426,5.64959 -5.2844,0 -17.9478,-7.41124 -6.48882,-12.10626 3.60454,-1.47687 16.99084,-4.69372 21.89978,-3.22834 5.12725,1.53055 16.14331,13.68125 11.35544,11.29918 -15.84755,-7.88451 14.36751,-9.60546 19.46646,-7.26376 9.25376,4.24981 11.35544,38.38927 11.35544,28.24795 0,-26.21733 61.96016,43.12654 34.87742,47.61796 -12.74817,2.11417 -39.43543,-23.17711 -37.31073,-10.49209 0.97483,5.81997 17.91913,11.48233 12.16655,12.91334 -27.2379,6.77574 -62.99794,-24.47927 -77.86587,-9.68501 z"
+         id="path4472"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#471d13;fill-opacity:1;stroke:none"
+         d="m 564.96206,665.59848 c 3.27954,-11.78949 10.46009,-17.36418 21.63945,-17.36418 5.21927,0 16.03859,-23.16781 29.21327,-3.9464 7.31942,10.67878 0.92777,55.92645 -18.39354,41.83188 -11.6424,-8.49294 -16.9537,-15.37994 -32.45918,-20.5213 z"
+         id="path4474"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g4489"
+       transform="matrix(0.99422125,0.1073504,-0.1073504,0.99422125,266.80471,-42.936395)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/werewolfdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-2"
+         d="m 429.49821,967.69492 18.38478,21.92031"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-28"
+         d="m 450.71142,969.10914 -24.04163,16.26345"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-9"
+         d="m 479.65254,966.28071 12.72792,26.16295"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-7"
+         d="m 475.4099,986.0797 21.92031,-14.84924"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       transform="translate(856,119)"
+       sodipodi:type="arc"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       id="path4495"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       inkscape:connector-curvature="0"
+       id="path4497"
+       d="m 966.84603,805.53373 c 42.49807,37.26198 28.15383,-15.50496 37.41517,-18.42701 10.658,-3.36266 48.3989,4.6482 53.8414,11.51688 4.2891,5.4129 18.42,33.70873 29.2021,16.69946 28.1325,-44.38014 -140.14836,-59.48736 -120.45867,-9.78933 z"
+       style="fill:#767676;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 998.49821,829.69492 18.38479,21.92031"
+       id="path4319-36"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1019.7114,831.10914 -24.04161,16.26345"
+       id="path4321-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1048.6525,828.28071 12.728,26.16295"
+       id="path4323-29"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1044.4099,848.0797 21.9203,-14.84924"
+       id="path4325-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/suicidedeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z"
+       sodipodi:ry="53.5"
+       sodipodi:rx="53.5"
+       sodipodi:cy="713.86218"
+       sodipodi:cx="170.5"
+       id="path4512"
+       style="fill:#f1c276;fill-opacity:1;stroke:none"
+       sodipodi:type="arc"
+       transform="translate(1176,42)" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       inkscape:connector-curvature="0"
+       id="path4514"
+       d="m 1277,734.36218 c 22.3478,-55.47309 140,-69.61451 140,8 0,4.7959 0.086,15.95705 -4,18 -6.6618,3.33088 -13.5745,4.92819 -21,4 -4.0878,-0.51098 1.601,-21.79806 1,-23 -4.7644,-9.52878 -27.2746,3.72535 -32,-1 -2.9666,-2.9666 -7.9761,-23.67463 -13,-22 -6.3575,2.11916 -4.3658,16.36581 -8,20 -9.0846,9.08461 -18.7593,-2.24072 -23,2 -4.429,4.42904 2.1208,16.85347 -9,15 -19.8112,-3.30187 -12.7876,-18.39823 -31,-21 z"
+       style="fill:#1b1312;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1321.4982,746.69492 18.3848,21.92031"
+       id="path4319-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1342.7114,748.10914 -24.0416,16.26345"
+       id="path4321-94"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1371.6525,745.28071 12.728,26.16295"
+       id="path4323-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1367.4099,765.0797 21.9203,-14.84924"
+       id="path4325-84"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snorerdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z"
+       sodipodi:ry="53.5"
+       sodipodi:rx="53.5"
+       sodipodi:cy="713.86218"
+       sodipodi:cx="170.5"
+       id="path4529"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       sodipodi:type="arc"
+       transform="translate(1293.0669,372.06688)" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       sodipodi:nodetypes="ccsssssssscsssccsssccc"
+       inkscape:connector-curvature="0"
+       id="path4531"
+       d="m 1386.5338,1087.8525 c -6.741,-16.8525 14.2562,-28.535 14.1422,-28.9914 16.2413,-20.5943 -20.1439,-5.6673 2.1213,-31.8198 10.3188,-12.1204 12.6567,5.954 24.7487,3.5356 3.4992,-0.6999 -2.1082,-15.563 0.7071,-16.9706 28.0638,-14.03189 18.3215,4.9498 25.4558,4.9498 8.7626,0 8.7152,-22.82485 22.6275,-20.50615 15.3457,2.55765 8.4852,9.36735 8.4852,18.38475 0,1.8387 21.5389,-10.2809 31.1127,-0.7071 6.3115,6.3115 -3.6157,15.5564 -9.1923,15.5564 -14.7678,0 27.0451,-5.4885 28.9913,4.2426 0.3473,1.7362 0.8912,12.1952 -0.7071,12.7279 -4.3011,1.4338 -17.8335,1.0217 -13.435,2.1214 4.2151,1.0537 25.9604,10.8091 18.3848,18.3847 -4.5031,4.5031 -23.595,5.2102 -19.0919,0.7071 0.8592,-0.8592 10.1661,11.0471 7.7782,13.4351 -12.3281,12.328 -30.9936,-24.6892 -38.1838,-28.2843 -5.8803,-2.9401 -23.5449,6.364 -16.9706,6.364 8.357,0 -21.4102,-6.8741 -23.3345,-4.9498 -3.4793,3.4794 -9.2924,7.2043 -11.3137,9.8995 -4.2225,5.63 -14.0035,-4.1289 -20.506,-2.8284 12.3678,29.1065 -26.1155,37.9065 -31.8199,24.7487 z"
+       style="fill:#919191;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1433.4982,1072.6949 18.3848,21.9203"
+       id="path4319-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1454.7114,1074.1091 -24.0416,16.2635"
+       id="path4321-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1483.6525,1071.2807 12.728,26.163"
+       id="path4323-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1479.4099,1091.0797 21.9203,-14.8492"
+       id="path4325-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/grannydeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       transform="translate(1642.3851,-81.632468)"
+       sodipodi:type="arc"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       id="path4546"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       style="fill:#f3f4ea;fill-opacity:1;stroke:none"
+       d="m 1765.8851,667.22971 44,20 -47,11.5 z"
+       id="path4548"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       style="fill:#f3f4ea;fill-opacity:1;stroke:none"
+       d="m 1810.3851,686.72971 42.5,-18 -6,35 z"
+       id="path4550"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       sodipodi:type="arc"
+       style="fill:#f3f4ea;fill-opacity:1;stroke:none"
+       id="path4552"
+       sodipodi:cx="132.75"
+       sodipodi:cy="780.11218"
+       sodipodi:rx="5.75"
+       sodipodi:ry="5.75"
+       d="m 138.5,780.11218 a 5.75,5.75 0 1 1 -11.5,0 5.75,5.75 0 1 1 11.5,0 z"
+       transform="matrix(1.7378506,0,0,1.7685943,1578.3748,-692.39905)" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       sodipodi:nodetypes="csssssc"
+       inkscape:connector-curvature="0"
+       id="path4554"
+       d="m 1757.8811,627.00464 c 25.7491,13.96913 8.1123,-20.32277 30.9586,-27.93817 18.818,-6.27271 54.5112,-4.3855 67.2026,8.30594 3.4889,3.48887 -0.8081,20.33428 3.0204,24.16275 9.7077,9.70771 19.8695,-11.52774 15.1017,-22.65258 -8.1935,-19.11818 -20.5667,-33.42203 -39.2645,-38.50939 -36.3064,-9.8784 -100.1113,28.92036 -77.0188,56.63145 z"
+       style="fill:#000000;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1781.4982,619.69492 18.3848,21.92031"
+       id="path4319-10"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1802.7114,621.10914 -24.0416,16.26345"
+       id="path4321-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1831.6525,618.28071 12.728,26.16295"
+       id="path4323-32"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1827.4099,638.0797 21.9203,-14.84924"
+       id="path4325-06"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampiredeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z"
+       sodipodi:ry="53.5"
+       sodipodi:rx="53.5"
+       sodipodi:cy="713.86218"
+       sodipodi:cx="170.5"
+       id="path4569"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       sodipodi:type="arc"
+       transform="translate(1583.934,-603.27208)" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       d="m 1704.7832,170.88909 c -16.5308,-13.56687 -25.9829,-80.64756 -13.7193,-95.26346 50.347,-60.00405 108.5062,-38.55374 133.8655,3.77886 13.8623,23.14059 -14.7894,56.42938 -16.9954,75.68561 -1.7648,15.40529 -15.7643,-66.67072 -22.163,-69.87006 -14.4029,-7.20144 -45.2212,-5.40626 -55.7821,15.13644 -13.1654,25.60885 -13.3769,79.48749 -25.2057,70.53261 z"
+       id="path4571"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssssc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1726.4982,109.69492 18.3848,21.92031"
+       id="path4319-15"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1747.7114,111.10914 -24.0416,16.26345"
+       id="path4321-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1776.6525,108.28071 12.728,26.16295"
+       id="path4323-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1772.4099,128.0797 21.9203,-14.84924"
+       id="path4325-76"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/vampdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/cultistdeadhead.png"
+       transform="translate(913.93398,-682.27208)"
+       sodipodi:type="arc"
+       style="fill:#eac086;fill-opacity:1;stroke:none"
+       id="path4586"
+       sodipodi:cx="170.5"
+       sodipodi:cy="713.86218"
+       sodipodi:rx="53.5"
+       sodipodi:ry="53.5"
+       d="m 224,713.86218 a 53.5,53.5 0 1 1 -107,0 53.5,53.5 0 1 1 107,0 z" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/cultistdeadhead.png"
+       sodipodi:nodetypes="csssc"
+       inkscape:connector-curvature="0"
+       id="path4589"
+       d="m 1017.7832,58.88909 c 8.4692,-17.56687 -15.9829,-47.64755 -3.7193,-62.26346 77.8685,-92.804518 173.1116,1.98155 148.8701,50.46447 -6.9345,13.86904 -59.7643,-45.67072 -66.163,-48.87006 -32.3578,-16.17888 -57.6702,76.80728 -78.9878,60.66905 z"
+       style="fill:#fffab4;fill-opacity:1;stroke:none" />
+    <g
+       id="g4604"
+       transform="matrix(0.99053512,0.13725955,-0.13725955,0.99053512,15.54444,-148.70077)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/cultistdeadhead.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4319-56"
+         d="m 1053.4982,26.694918 18.3848,21.92031"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4321-93"
+         d="m 1074.7114,28.109138 -24.0416,16.26345"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4323-74"
+         d="m 1103.6525,25.280708 12.728,26.162952"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priestdeadhead.png"
+         inkscape:connector-curvature="0"
+         id="path4325-5"
+         d="m 1099.4099,45.079698 21.9203,-14.84924"
+         style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
   </g>
 </svg>
