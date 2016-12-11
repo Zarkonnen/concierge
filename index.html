@@ -198,7 +198,7 @@ var peopleList = [
         id: "vampire",
         head: "vampirehead",
         activeHead: "vampireactivehead",
-        deadHead: "vampdeadhead",
+        deadHead: "vampiredeadhead",
         body: "vampirebody",
         name: "A.L. Ucard",
         intro: "Hello, my friend. One room please. I won't be needing dinner.",
@@ -216,7 +216,10 @@ var peopleList = [
         active: false,
         strength: 6,
         alive: true,
-        killsIntruders: true
+        killsIntruders: true,
+        priority: 1,
+        feeds: true,
+        moveTo: -1
     },
     {
         id: "thief",
@@ -384,14 +387,14 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
-    if (!guestIDs.cultist) {
-        guestID = "cultist";
-    } else if (!guestIDs.vamp) {
-        guestID = "vamp";
+    if (!guestIDs.priest) {
+        guestID = "priest";
+    } else if (!guestIDs.vampire) {
+        guestID = "vampire";
     }
-    /* else if (!guestIDs.suicide) {
-        guestID = "suicide";
-    }*/
+     else if (!guestIDs.werewolf) {
+        guestID = "werewolf";
+    }
     guestIDs[guestID] = 1;
     var guest = people[guestID];
     animate(guest, guest.introParticles ? "standing" : "walking");
@@ -501,7 +504,7 @@ function input(ms) {
 }
 
 function doesActivate(occupant) {
-    return occupant.fucks || occupant.summons || occupant.snores || occupant.attacks || occupant.steals || occupant.suicides || (occupant.rampageForStolenItem && occupant.stolenFrom);
+    return occupant.fucks || occupant.feeds || occupant.summons || occupant.snores || occupant.attacks || occupant.steals || occupant.suicides || (occupant.rampageForStolenItem && occupant.stolenFrom);
 }
 
 function disturbNearby(actor, room) {
@@ -525,6 +528,9 @@ function update(ms) {
         }
     }
     if (night) {
+        if (people.vampire != animating) {
+            animTick(people.vampire, ms);
+        }
         if (people.cultist != animating) {
             animTick(people.cultist, ms);
             if (people.cultist.animation == "summoning" && emitTick % 4 == 0) {
@@ -554,6 +560,18 @@ function update(ms) {
                     life: 500 + Math.random() * 300
                 });
             }
+            if (people.cultist.animation == "summoning" && emitTick % 209 == 0) {
+                particles.push({
+                    color: "#ffffff",
+                    letter: ["Fhtagn!", "Cthulhu!", "Dagon!", "Shub-Niggurath!", "Fnord!"][Math.floor(Math.random() * 5)],
+                    size: 30,
+                    x: people.cultist.x,
+                    y: people.cultist.y - 40,
+                    dx: 0,
+                    dy: -0.07,
+                    life: 2000
+                });
+            }
         }
         if (animating) {
             var a = animating;
@@ -574,6 +592,18 @@ function update(ms) {
                 particles.push({
                     color: "#ffffff",
                     letter: "Z",
+                    size: 30,
+                    x: animating.x,
+                    y: animating.y - 40,
+                    dx: 0,
+                    dy: -0.07,
+                    life: 2000
+                });
+            }
+            if (animating && currentAnim == "fucking" && emitTick % 70 == 0) {
+                particles.push({
+                    color: "#ffffff",
+                    letter: "Oh!",
                     size: 30,
                     x: animating.x,
                     y: animating.y - 40,
@@ -737,6 +767,37 @@ function update(ms) {
                     doMove(turnGuest, turnGuestRoom, targetRoom, true);
                     return;
                 }
+                if (turnGuest.feeds) {
+                    if (!targetRoom.occupant.alive) {
+                        console.log(turnGuest.id + " moves on to find a victim");
+                        var oldTargetRoom = targetRoom;
+                        targetRoom = rooms[(rooms.indexOf(targetRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
+                        if (targetRoom == turnGuestRoom) {
+                            // Nothing to eat. Sad.
+                            targetRoom = oldTargetRoom;
+                            turnGuest.moved = true;
+                            console.log(turnGuest.id + " done with trying to feed");
+                            return;
+                        }
+                        doMove(turnGuest, oldTargetRoom, targetRoom, true);
+                        return;
+                    }
+                    if (targetRoom.occupant.neutralizes && targetRoom.occupant.neutralizes[turnGuest.id]) {
+                        console.log(turnGuest.id + " neutralized");
+                        deactivatePostAnim = !targetRoom.occupant.active;
+                        targetRoom.occupant.active = true;
+                        targetRoom.occupant.xFlipForAnimation = true;
+                        doAnim(targetRoom.occupant, "neutralizing");
+                        neutralize(turnGuest);
+                        turnGuest.moved = true;
+                        return;
+                    }
+                    targetRoom.occupant.neutralized = true;
+                    turnGuest.feeding = true;
+                    turnGuest.moved = true;
+                    animate(turnGuest, "feeding");
+                    return;
+                }
                 if (turnGuest.summons) {
                     console.log(turnGuest.id + " starts summoning");
                     animate(turnGuest, "summoning"); // In the BG
@@ -745,7 +806,7 @@ function update(ms) {
                     return;
                 }
                 if (turnGuest.fucks) {
-                    if (targetRoom.occupant.alive) {
+                    if (targetRoom.occupant.alive && !targetRoom.occupant.feeding) {
                         console.log(turnGuest.id + " fucking");
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "fucking");
@@ -757,7 +818,7 @@ function update(ms) {
                     return;
                 }
                 if (turnGuest.rampageForStolenItem || turnGuest.rampagesIfActivated) {
-                    if (targetRoom.occupant.alive) {
+                    if (targetRoom.occupant.alive && !targetRoom.occupant.feeding) {
                         console.log(turnGuest.id + " attacking in rampage");
                         disturbNearby(turnGuest, targetRoom);
                         if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
@@ -804,7 +865,7 @@ function update(ms) {
                         turnGuest.moved = true;
                         return;
                     }
-                    if (targetRoom.occupant.alive && !targetRoom.occupant.neutralized && targetRoom.occupant.killsIntruders) {
+                    if (targetRoom.occupant.alive && !targetRoom.occupant.neutralized && targetRoom.occupant.killsIntruders && !targetRoom.occupant.feeding) {
                         console.log(turnGuest.id + " killed by room occupant");
                         deactivatePostAnim = !targetRoom.occupant.active;
                         targetRoom.occupant.active = true;
@@ -841,6 +902,11 @@ function update(ms) {
                     turnGuest.moved = true;
                 }
                 if (targetRoom && turnGuest.attacks) {
+                    if (!targetRoom.occupant.alive || targetRoom.occupant.feeding) {
+                        console.log(turnGuest.id + " no one to kill");
+                        turnGuest.moved = true;
+                        return;
+                    }
                     console.log(turnGuest.id + " attacking");
                     if (targetRoom.occupant.neutralizes && targetRoom.occupant.neutralizes[turnGuest.id] && !targetRoom.occupant.neutralized) {
                         console.log(turnGuest.id + " neutralized");
@@ -872,12 +938,16 @@ function update(ms) {
                 }
             } else {
                 if (targetRoom) {
-                    console.log(turnGuest.id + " going home");
-                    doMove(turnGuest, targetRoom, turnGuestRoom, false);
+                    if (turnGuest.feeding) {
+                        console.log("staying to feed");
+                    } else {
+                        console.log(turnGuest.id + " going home");
+                        doMove(turnGuest, targetRoom, turnGuestRoom, false);
+                    }
                     targetRoom = null;
                     return;
                 }
-                if (turnGuest.active) {
+                if (turnGuest.active && !turnGuest.feeding) {
                     console.log(turnGuest.id + " deactivating");
                     doAnim(turnGuest, "deactivating");
                     turnGuest.active = false;
@@ -925,6 +995,7 @@ var animLengths = {
     walking: 100000,
     standing: 100000,
     summoning: 100000,
+    feeding: 100000,
     killing: 500,
     neutralizing: 2000,
     seducing: 2000,
@@ -958,6 +1029,12 @@ function person(person, x, y, active) {
     }
     var t = person.animationT;
     switch (person.animation) {
+        case "feeding":
+            headX -= 300 + Math.sin(t * 0.002) * 20;
+            bodyX -= 300;
+            toolX -= 300;
+            stolenX -= 300;
+            break;
         case "summoning":
             bodyX += Math.sin(t * 0.002) * 20;
             headX -= Math.sin(t * 0.002) * 20;
