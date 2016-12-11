@@ -146,7 +146,10 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 1,
-        alive: true
+        alive: true,
+        neutralizes: {werewolf: 1, vampire: 1},
+        stealable: "cross",
+        neutralized: false
     },
     {
         id: "vamp",
@@ -255,6 +258,7 @@ var movingTo = null;
 var movingToRight = false;
 var movingToState = 0;
 var toKill = null;
+var toNeutralize = null;
 var postAnimWait = 0;
 var deactivatePostAnim = false;
 var particles = [];
@@ -346,6 +350,8 @@ function pickGuest() {
     var guestID = ids[Math.floor(Math.random() * ids.length)];
     if (!guestIDs.werewolf) {
         guestID = "werewolf";
+    } else if (!guestIDs.priest) {
+        guestID = "priest";
     }
     guestIDs[guestID] = 1;
     var guest = people[guestID];
@@ -361,6 +367,7 @@ function animate(person, animation) {
 function animTick(person, ms) {
     person.animationT += ms;
     if (person.animationT > animLengths[person.animation]) {
+        person.xFlipForAnimation = false;
         person.animation = "standing";
         person.animationT = 0;
         return null;
@@ -371,7 +378,7 @@ function animTick(person, ms) {
 function doAnim(person, animation) {
     animate(person, animation);
     animating = person;
-    postAnimWait = animation == "killing" ? 0 : 500;
+    postAnimWait = animation == "killing" || animation == "neutralizing" ? 0 : 500;
 }
 
 var MT_START = 0;
@@ -383,6 +390,10 @@ var MT_END = 5;
 
 function kill(person) {
     toKill = person;
+}
+
+function neutralize(person) {
+    toNeutralize = person;
 }
 
 function doMove(person, from, room, right) {
@@ -546,6 +557,14 @@ function update(ms) {
             }
             postAnimWait = 1000;
             toKill = null;
+        } else if (toNeutralize) {
+            toNeutralize.neutralized = true;
+            if (toNeutralize.active) {
+                toNeutralize.active = false;
+                doAnim(toNeutralize, "deactivating");
+            }
+            postAnimWait = 500;
+            toNeutralize = null;
         } else {
             if (!turnGuest) {
                 for (var i = 0; i < rooms.length; i++) {
@@ -572,16 +591,26 @@ function update(ms) {
                     return;
                 }
                 if (targetRoom && turnGuest.attacks) {
-                    if (turnGuest.strength > targetRoom.occupant.strength) {
-                        doAnim(turnGuest, "killing");
-                        turnGuest.moved = true;
-                        kill(targetRoom.occupant);
-                    } else {
+                    if (targetRoom.occupant.neutralizes && targetRoom.occupant.neutralizes[turnGuest.id]) {
                         deactivatePostAnim = !targetRoom.occupant.active;
                         targetRoom.occupant.active = true;
-                        doAnim(targetRoom.occupant, "killing");
-                        kill(turnGuest);
-                        turnGuest = null;
+                        targetRoom.occupant.xFlipForAnimation = true;
+                        doAnim(targetRoom.occupant, "neutralizing");
+                        neutralize(turnGuest);
+                        turnGuest.moved = true;
+                    } else {
+                        if (turnGuest.strength > targetRoom.occupant.strength) {
+                            doAnim(turnGuest, "killing");
+                            turnGuest.moved = true;
+                            kill(targetRoom.occupant);
+                        } else {
+                            deactivatePostAnim = !targetRoom.occupant.active;
+                            targetRoom.occupant.active = true;
+                            targetRoom.occupant.xFlipForAnimation = true;
+                            doAnim(targetRoom.occupant, "killing");
+                            kill(turnGuest);
+                            turnGuest = null;
+                        }
                     }
                     return;
                 }
@@ -591,8 +620,10 @@ function update(ms) {
                     targetRoom = null;
                     return;
                 }
-                doAnim(turnGuest, "deactivating");
-                turnGuest.active = false;
+                if (turnGuest.active) {
+                    doAnim(turnGuest, "deactivating");
+                    turnGuest.active = false;
+                }
                 turnGuest = null;
                 return;
             }
@@ -765,12 +796,12 @@ function draw() {
     if (night) {
         img("rooms-night", w / 2, h / 2);
         c.translate(w / 2 - 500, 0);
-        text("Survivors: " + numSurvivors(), 100, 350);
+        text("Survivors: " + numSurvivors(), 200, 350);
         for (var i = 0; i < rooms.length; i++) {
             var room = rooms[i];
             var occupant = room.occupant;
             c.translate(occupant.x, occupant.y);
-            c.scale(0.2, 0.2);
+            c.scale(occupant.xFlipForAnimation ? -0.2 : 0.2, 0.2);
             person(occupant, 0, 0, occupant.active);
             c.resetTransform();
             c.scale(scale, scale);
