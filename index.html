@@ -1379,6 +1379,17 @@ function person(person, x, y, active) {
 
 var images = {};
 
+for (var i = 0; i < peopleList.length; i++) {
+    var p = peopleList[i];
+    var subs = ["head", "body", "tool", "activeHead", "activeBody", "activeTool", "stealable"];
+    for (var j = 0; j < subs.length; j++) {
+        if (p[subs[j]]) {
+            images[p[subs[j]]] = new Image();
+            images[p[subs[j]]].src = "graphics/" + p[subs[j]] + ".png";
+        }
+    }
+}
+
 function img(name, x, y) {
     if (name == null) { return; }
     if (!images[name]) {
