@@ -39,6 +39,37 @@
        fy="2334.3621"
        r="192"
        gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5000-5"
+       id="radialGradient4998-2"
+       cx="-1654"
+       cy="2334.3621"
+       fx="-1654"
+       fy="2334.3621"
+       r="192"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient5000-5">
+      <stop
+         id="stop5002-4"
+         offset="0"
+         style="stop-color:#f9f6e1;stop-opacity:1;" />
+      <stop
+         id="stop5004-7"
+         offset="1"
+         style="stop-color:#f9f6e1;stop-opacity:0;" />
+    </linearGradient>
+    <radialGradient
+       r="192"
+       fy="2334.3621"
+       fx="-1654"
+       cy="2334.3621"
+       cx="-1654"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4645"
+       xlink:href="#linearGradient5000-5"
+       inkscape:collect="always" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -48,8 +79,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35355339"
-     inkscape:cx="737.22619"
-     inkscape:cy="1408.2239"
+     inkscape:cx="-2091.2009"
+     inkscape:cy="503.12721"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -3553,137 +3584,130 @@
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
     </g>
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="322.43433"
+       x="-2818.6975"
+       height="360"
+       width="715.93195"
+       id="rect3341-6"
+       style="fill:#3d3c41;fill-opacity:1;stroke:none" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       transform="matrix(0,1,1,0,0,0)"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3343-7"
+       width="53.149994"
+       height="526.71991"
+       x="475.85934"
+       y="-2818.6975" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3345-5"
+       width="120.73769"
+       height="90.869553"
+       x="343.27744"
+       y="2286.9619"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2389.3271"
+       x="343.27744"
+       height="90.869553"
+       width="120.73769"
+       id="rect3347-3"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3349-5"
+       width="120.73769"
+       height="90.869553"
+       x="343.27744"
+       y="2491.6921"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
     <g
-       id="g4289"
-       transform="matrix(1,0,0,0.9,0,68.243433)"
+       transform="matrix(0,0.57580384,-0.63978204,0,-1122.2331,395.67286)"
+       id="g3351-6"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180">
       <rect
-         style="fill:#3d3c41;fill-opacity:1;stroke:none"
-         id="rect3341-6"
-         width="715.93195"
-         height="400"
-         x="-2818.6975"
-         y="282.43433"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         inkscape:export-xdpi="180"
-         inkscape:export-ydpi="180" />
-      <rect
-         y="-2818.6975"
-         x="452.90656"
-         height="526.71991"
-         width="59.05555"
-         id="rect3343-7"
-         style="fill:#a18f81;fill-opacity:1;stroke:none"
-         transform="matrix(0,1,1,0,0,0)"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         inkscape:export-xdpi="180"
-         inkscape:export-ydpi="180" />
-      <rect
-         transform="matrix(0,1,-1,0,0,0)"
          inkscape:export-ydpi="180"
          inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         y="2286.9619"
-         x="305.59332"
-         height="90.869553"
-         width="134.15298"
-         id="rect3345-5"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         y="1820.509"
+         x="252.13496"
+         height="142.03206"
+         width="209.68546"
+         id="rect3353-2"
          style="fill:#a18f81;fill-opacity:1;stroke:none" />
       <rect
-         transform="matrix(0,1,-1,0,0,0)"
          style="fill:#a18f81;fill-opacity:1;stroke:none"
-         id="rect3347-3"
-         width="134.15298"
-         height="90.869553"
-         x="305.59332"
-         y="2389.3271"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+         id="rect3355-9"
+         width="209.68546"
+         height="142.03206"
+         x="252.13496"
+         y="1980.509"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
          inkscape:export-xdpi="180"
          inkscape:export-ydpi="180" />
       <rect
-         transform="matrix(0,1,-1,0,0,0)"
          inkscape:export-ydpi="180"
          inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         y="2491.6921"
-         x="305.59332"
-         height="90.869553"
-         width="134.15298"
-         id="rect3349-5"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+         y="2140.5088"
+         x="252.13496"
+         height="142.03206"
+         width="209.68546"
+         id="rect3357-1"
          style="fill:#a18f81;fill-opacity:1;stroke:none" />
-      <g
-         inkscape:export-ydpi="180"
-         inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         id="g3351-6"
-         transform="matrix(0,0.63978204,-0.63978204,0,-1122.2331,363.81047)">
-        <rect
-           style="fill:#a18f81;fill-opacity:1;stroke:none"
-           id="rect3353-2"
-           width="209.68546"
-           height="142.03206"
-           x="252.13496"
-           y="1820.509"
-           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
-           inkscape:export-xdpi="180"
-           inkscape:export-ydpi="180" />
-        <rect
-           inkscape:export-ydpi="180"
-           inkscape:export-xdpi="180"
-           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
-           y="1980.509"
-           x="252.13496"
-           height="142.03206"
-           width="209.68546"
-           id="rect3355-9"
-           style="fill:#a18f81;fill-opacity:1;stroke:none" />
-        <rect
-           style="fill:#a18f81;fill-opacity:1;stroke:none"
-           id="rect3357-1"
-           width="209.68546"
-           height="142.03206"
-           x="252.13496"
-           y="2140.5088"
-           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
-           inkscape:export-xdpi="180"
-           inkscape:export-ydpi="180" />
-      </g>
-      <rect
-         transform="matrix(0,1,-1,0,0,0)"
-         style="fill:#a18f81;fill-opacity:1;stroke:none"
-         id="rect3359-2"
-         width="134.15298"
-         height="42.010986"
-         x="413.26324"
-         y="2311.3911"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         inkscape:export-xdpi="180"
-         inkscape:export-ydpi="180" />
-      <rect
-         transform="matrix(0,1,-1,0,0,0)"
-         inkscape:export-ydpi="180"
-         inkscape:export-xdpi="180"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         y="2413.7563"
-         x="413.26324"
-         height="42.010986"
-         width="134.15298"
-         id="rect3361-7"
-         style="fill:#a18f81;fill-opacity:1;stroke:none" />
-      <rect
-         transform="matrix(0,1,-1,0,0,0)"
-         style="fill:#a18f81;fill-opacity:1;stroke:none"
-         id="rect3363-0"
-         width="134.15298"
-         height="42.010986"
-         x="413.26324"
-         y="2516.1216"
-         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
-         inkscape:export-xdpi="180"
-         inkscape:export-ydpi="180" />
     </g>
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2311.3911"
+       x="440.18036"
+       height="42.010986"
+       width="120.73769"
+       id="rect3359-2"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       id="rect3361-7"
+       width="120.73769"
+       height="42.010986"
+       x="440.18036"
+       y="2413.7563"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms-night.png"
+       y="2516.1216"
+       x="440.18036"
+       height="42.010986"
+       width="120.73769"
+       id="rect3363-0"
+       style="fill:#a18f81;fill-opacity:1;stroke:none"
+       transform="matrix(0,1,-1,0,0,0)" />
     <path
        style="fill:#cf0000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
        d="m -998.43478,604.05648 c -55.43932,-30.37068 8.75991,-42.97565 18.38478,-62.22539 6.72796,-13.45592 -30.8232,-25.16639 -33.9411,-28.28427 -7.3316,-7.33154 32.4515,-36.78212 41.01217,-35.35534 42.9669,7.16115 10.29082,49.49747 43.84062,49.49747 15.98751,0 89.3531,9.3842 72.12489,43.84062 -9.36946,18.73892 -44.04718,5.86342 -56.56854,18.38478 -17.36853,17.36853 40.33278,34.62053 11.31371,63.63961 -26.61902,26.61901 -41.68381,-22.08822 -55.15433,-25.45585 -35.15678,-8.78919 -39.60486,49.4906 -77.78172,11.31371 -12.0232,-12.02312 39.17415,-18.52296 36.76952,-35.35534 z"
@@ -4491,16 +4515,158 @@
        sodipodi:nodetypes="csssc"
        inkscape:connector-curvature="0"
        id="path4614"
-       d="m 698.00679,49.49059 c 117.99718,-160.19723 -84.07073,-280.19838 -29.52233,-494.44991 6.10159,-23.96542 15.01715,-17.87612 23.41767,-18.73075 142.68606,-14.51618 24.07273,2.59153 43.59966,165.88309 26.29637,219.90324 64.25423,285.275247 -37.495,347.29757 z"
+       d="m 698.00679,-509.04561 c 117.99718,160.19723 -84.07073,280.19838 -29.52233,494.449913 6.10159,23.9654204 15.01715,17.8761204 23.41767,18.7307504 142.68606,14.5161796 24.07273,-2.59153 43.59966,-165.8830934 26.29637,-219.90324 64.25423,-285.27524 -37.495,-347.29757 z"
        style="fill:#00d224;fill-opacity:1;stroke:none" />
     <path
        style="fill:#00d224;fill-opacity:1;stroke:none"
-       d="M 460.41891,7.0641832 C 422.8526,-218.18687 410.28931,-208.08038 464.83771,-422.33191 c 6.10159,-23.96542 -18.92398,-82.92994 -10.52346,-83.78457 142.68606,-14.51618 94.93841,21.9185 40.77123,177.1968 -92.49757,265.158072 10.51412,126.88333 -34.66657,335.9838632 z"
+       d="m 488.70318,-458.13392 c -37.56631,225.25105 -78.41387,206.65928 -23.86547,420.910813 6.10159,23.96542 -18.92398,82.92994 -10.52346,83.78457 142.68606,14.51618 84.46598,-18.652791 40.77123,-177.196803 -61.38487,-222.73166 38.79839,-118.39805 -6.3823,-327.49858 z"
        id="path4616"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csssc"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/tentacle0.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient4645);fill-opacity:1;stroke:none"
+       id="path4990-4"
+       sodipodi:cx="-1654"
+       sodipodi:cy="2334.3621"
+       sodipodi:rx="192"
+       sodipodi:ry="192"
+       d="m -1462,2334.3621 a 192,192 0 1 1 -384,0 192,192 0 1 1 384,0 z"
+       transform="translate(1345.7015,1147.619)"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       transform="matrix(1.7988254,0,0,1.2244106,948.54519,1151.8769)"
+       d="m -642.05296,1956.7517 a 57.27565,14.849242 0 1 1 -114.5513,0 57.27565,14.849242 0 1 1 114.5513,0 z"
+       sodipodi:ry="14.849242"
+       sodipodi:rx="57.27565"
+       sodipodi:cy="1956.7517"
+       sodipodi:cx="-699.32861"
+       id="path4970-4"
+       style="fill:#b3a221;fill-opacity:1;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       sodipodi:type="arc"
+       style="fill:#b3a221;fill-opacity:1;stroke:none"
+       id="path4972-3"
+       sodipodi:cx="-699.32861"
+       sodipodi:cy="1956.7517"
+       sodipodi:rx="57.27565"
+       sodipodi:ry="14.849242"
+       d="m -642.05296,1956.7517 a 57.27565,14.849242 0 1 1 -114.5513,0 57.27565,14.849242 0 1 1 114.5513,0 z"
+       transform="matrix(1.7988254,0,0,1.2244106,948.54519,1134.7352)" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       y="3531.137"
+       x="-412.70398"
+       height="16.28466"
+       width="206.55806"
+       id="rect4974-0"
+       style="fill:#b3a221;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       inkscape:connector-curvature="0"
+       id="path4976-7"
+       d="m -308.32532,3394.1203 c -66.9427,0 -121.1707,43.4039 -121.1707,96.9582 0,12.8577 3.1579,25.1441 8.8387,36.3726 l 224.7176,0 c 5.6808,-11.2285 8.8387,-23.5149 8.8387,-36.3726 0,-53.5543 -54.2816,-96.9582 -121.2243,-96.9582 z"
+       style="fill:#dac739;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       transform="matrix(1.7141748,0,0,1.7141748,833.64809,181.01822)"
+       d="m -600.5,1951.8622 a 66,7 0 1 1 -132,0 66,7 0 1 1 132,0 z"
+       sodipodi:ry="7"
+       sodipodi:rx="66"
+       sodipodi:cy="1951.8622"
+       sodipodi:cx="-666.5"
+       id="path4978-8"
+       style="fill:#dac739;fill-opacity:1;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       y="3351.0972"
+       x="-317.99841"
+       height="64.847595"
+       width="18.18157"
+       id="rect4980-6"
+       style="fill:#dac739;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       transform="matrix(1.7141748,0,0,1.7141748,831.07689,179.30402)"
+       d="m -650.18467,1846.6199 a 14.495689,7.9549513 0 1 1 -28.99138,0 14.495689,7.9549513 0 1 1 28.99138,0 z"
+       sodipodi:ry="7.9549513"
+       sodipodi:rx="14.495689"
+       sodipodi:cy="1846.6199"
+       sodipodi:cx="-664.68036"
+       id="path4982-8"
+       style="fill:#dac739;fill-opacity:1;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       inkscape:connector-curvature="0"
+       id="path4984-8"
+       d="m -418.55652,3497.7105 c 17.4253,-37.9927 56.8929,-42.1532 63.4244,-79.7091 1.8733,-10.7714 54.3004,-10.5618 61.7103,-6.8567 8.8888,4.4441 38.2218,9.4279 28.2839,9.4279 -51.4619,0 -120.6406,44.3598 -153.4186,77.1379 z"
+       style="fill:#e2d363;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       transform="matrix(1.7141748,0,0,1.7141748,831.07689,179.30402)"
+       d="m -669.2766,1845.0289 a 3.0052037,2.1213202 0 1 1 -6.0104,0 3.0052037,2.1213202 0 1 1 6.0104,0 z"
+       sodipodi:ry="2.1213202"
+       sodipodi:rx="3.0052037"
+       sodipodi:cy="1845.0289"
+       sodipodi:cx="-672.2818"
+       id="path4986-4"
+       style="fill:#e2d363;fill-opacity:1;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       transform="matrix(1.7141748,0,0,2.2612518,830.21979,-840.69558)"
+       d="m -665.74102,1865.7118 a 1.2374369,8.3085051 0 1 1 -2.47487,0 1.2374369,8.3085051 0 1 1 2.47487,0 z"
+       sodipodi:ry="8.3085051"
+       sodipodi:rx="1.2374369"
+       sodipodi:cy="1865.7118"
+       sodipodi:cx="-666.97845"
+       id="path4988-3"
+       style="fill:#e2d363;fill-opacity:1;stroke:none"
+       sodipodi:type="arc" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Hotel Madriz;-inkscape-font-specification:Hotel Madriz"
+       x="-514.48181"
+       y="3509.9814"
+       id="text3339-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/logo.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan3341-4"
+         x="-514.48181"
+         y="3509.9814"
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Milkyway Hotel Personal Use;-inkscape-font-specification:Milkyway Hotel Personal Use">Concierge</tspan></text>
   </g>
 </svg>

@@ -9,6 +9,30 @@
         <canvas width="800" height="600" allowfullscreen="true" id="gameCanvas" style="margin-left: 10px; margin-top: 10px;"></canvas>
         <script>
 
+// Audio
+function hwl(name, volume) {
+    return new Howl({src: ["sounds/" + name + ".ogg", "sounds/" + name + ".mp3", "sounds/" + name + ".wav"], volume: volume || 1});
+}
+
+var sApocalypse = hwl("apocalypse");
+var sCthulhu = hwl("cthulhu", 0.3);
+var sDeath = hwl("death");
+var sExorcism = hwl("exorcism");
+var sGun = hwl("gun");
+var sInsomniac = hwl("insomniac");
+var sKnife = hwl("knife");
+var sMoans = hwl("moans", 0.4);
+var sSeduction = hwl("seduction");
+var sSnore = hwl("snore");
+var sTentacle = hwl("tentacle");
+var sTheft = hwl("theft");
+var sVampireDeath = hwl("vampireDeath");
+var sWerewolf = hwl("werewolf");
+var sDing = hwl("ding");
+var sPoof = hwl("poof");
+var sClick = hwl("click");
+var sDoor = hwl("door");
+var sSwish = hwl("swish");
 
 // State
 var peopleList = [];
@@ -53,6 +77,7 @@ var tentacle = null;
 var tentacleX = 0;
 var tentacleY = 0;
 var apocalypseAmt = 0;
+var killSound = null;
 var rooms = [];
 
 function reset() {
@@ -76,7 +101,8 @@ function reset() {
             stealable: "suitcase",
             rampageForStolenItem: true,
             priority: 100,
-            moveTo: 1
+            moveTo: 1,
+            weaponSound: sGun
         },
         {
             id: "werewolf",
@@ -99,7 +125,9 @@ function reset() {
             priority: 70,
             moveTo: -1,
             attacks: true,
-            strength: 3
+            strength: 3,
+            weaponSound: sKnife,
+            transformSound: sWerewolf
         },
         {
             id: "murderer",
@@ -123,7 +151,9 @@ function reset() {
             stealingNeutralizes: true,
             attacks: true,
             moveTo: 2,
-            priority: 90
+            priority: 90,
+            weaponSound: sKnife,
+            transformSound: sKnife
         },
         {
             id: "suicide",
@@ -144,7 +174,8 @@ function reset() {
             stealable: "suicidegun",
             stealingNeutralizes: true,
             suicides: true,
-            priority: 110
+            priority: 110,
+            weaponSound: sGun
         },
         {
             id: "cultist",
@@ -167,7 +198,8 @@ function reset() {
             stealingNeutralizes: true,
             priority: 40,
             summons: true,
-            disturbanceNeutralizes: true
+            disturbanceNeutralizes: true,
+            disturbanceSound: sInsomniac
         },
         {
             id: "snorer",
@@ -200,7 +232,8 @@ function reset() {
             y: 0,
             active: false,
             strength: 7,
-            alive: true
+            alive: true,
+            weaponSound: sKnife
         },
         {
             id: "priest",
@@ -268,7 +301,8 @@ function reset() {
             killsIntruders: true,
             priority: 60,
             feeds: true,
-            moveTo: -1
+            moveTo: -1,
+            weaponSound: sKnife
         },
         {
             id: "thief",
@@ -307,7 +341,9 @@ function reset() {
             alive: true,
             disturbanceActivates: true,
             rampagesIfActivated: true,
-            moveTo: -1
+            moveTo: -1,
+            weaponSound: sKnife,
+            transformSound: sInsomniac
         },
     ];
     people = {};
@@ -501,11 +537,13 @@ var MT_TRG_CORRIDOR = 3;
 var MT_TRG_CENTER = 4;
 var MT_END = 5;
 
-function kill(person) {
+function kill(person, ks) {
     toKill = person;
+    killSound = ks || null;
 }
 
 function tentacleKill(person) {
+    sTentacle.play();
     tentacle = "tentacle" + Math.floor(Math.random() * 2);
     tentacleX = person.x;
     tentacleY = 800;
@@ -542,6 +580,8 @@ function input(ms) {
     if (epilogue) {
         if (click && cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
             reset();
+            sClick.play();
+            sSwish.play();
             intro = false;
         }
         return;
@@ -556,6 +596,7 @@ function input(ms) {
                     room.occupant = guest;
                     guest.x = room.x + room.w / 4;
                     guest.y = room.y + room.h / 2;
+                    sClick.play();
                     if (isFull()){
                         guest = null;
                         assignGuest = false;
@@ -573,11 +614,16 @@ function input(ms) {
             }
         }
     } else {
+        if (click && click.x > w / 2 + 290 && click.y > 400 && click.x < w / 2 + 290 + 200 && click.y < 400 + 200) {
+            sDing.play();
+            click = null;
+        }
         if (intro) {
             if (click) {
                 introLine++;
                 if (introLine >= introLines.length) {
                     intro = false;
+                    sSwish.play();
                     return;
                 }
                 animate(manager, "talking");
@@ -589,9 +635,11 @@ function input(ms) {
                 guestWait = 500;
             }
         } else if (guestWait == 0 && !guestSaidHello) {
+            sDing.play();
             guestSaidHello = true;
             animate(guest, "talking");
         } else if (guestWait == 0 && guestSaidHello && click && cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+            sClick.play();
             assignGuest = true;
         }
     }
@@ -665,6 +713,7 @@ function update(ms) {
                 });
             }
             if (people.cultist.animation == "summoning" && emitTick % (apocalypseAmt > 0 ? 66 : 209) == 0) {
+                sCthulhu.play();
                 particles.push({
                     color: "#ffffff",
                     letter: ["Fhtagn!", "Cthulhu!", "Dagon!", "Shub-Niggurath!", "Fnord!"][Math.floor(Math.random() * 5)],
@@ -758,6 +807,7 @@ function update(ms) {
                     if (movingToState == MT_TRG_CENTER && moving.fucks && !moving.seduced) {
                         doAnim(moving, "seducing");
                         moving.seduced = true;
+                        sSeduction.play();
                         console.log("seductive wiggle");
                         return;
                     }
@@ -785,7 +835,12 @@ function update(ms) {
             postAnimWait -= ms;
         } else if (toKill) {
             toKill.alive = false;
+            if (killSound != null) {
+                killSound.play();
+            }
+            killSound = null;
             animate(toKill, "standing");
+            (toKill.id == "vampire" && morning ? sVampireDeath : sDeath).play();
             for (var i = 0; i < 30; i++) {
                 var angle = Math.random() * Math.PI * 2;
                 var dist = Math.random() * 20;
@@ -835,11 +890,17 @@ function update(ms) {
                             turnGuest = room.occupant;
                             turnGuestRoom = room;
                             console.log(turnGuest.id + " activated by disturbance");
+                            if (room.occupant.transformSound) {
+                                room.occupant.transformSound.play();
+                            }
                             return;
                         }
                         if (room.occupant.disturbanceNeutralizes) {
                             doAnim(room.occupant, "interrupted");
                             neutralize(room.occupant);
+                            if (room.occupant.disturbanceSound) {
+                                room.occupant.disturbanceSound.play();
+                            }
                             console.log(room.occupant.id + " neutralized by disturbance");
                             return;
                         }
@@ -876,6 +937,7 @@ function update(ms) {
                 }
                 if (people.cultist.alive && people.cultist.moved && !people.cultist.neutralized) {
                     console.log("Apocalypse!");
+                    sApocalypse.play();
                     apocalypse = true;
                     return;
                 }
@@ -899,6 +961,7 @@ function update(ms) {
                         console.log(turnGuest.id + " snoring");
                         turnGuest.active = true;
                         doAnim(turnGuest, "snoring");
+                        sSnore.play();
                         deactivatePostAnim = true;
                         turnGuest.moved = true;
                         disturbNearby(turnGuest, turnGuestRoom);
@@ -909,13 +972,14 @@ function update(ms) {
                     } else {
                         turnGuest.active = true;
                         doAnim(turnGuest, "activating");
+                        if (turnGuest.transformSound) { turnGuest.transformSound.play(); }
                     }
                     return;
                 }
                 if (turnGuest.suicides) {
                     console.log(turnGuest.id + " commits suicide");
                     doAnim(turnGuest, "suicide");
-                    kill(turnGuest);
+                    kill(turnGuest, turnGuest.weaponSound);
                     disturbNearby(turnGuest, turnGuestRoom);
                     turnGuest = null;
                     return;
@@ -947,6 +1011,7 @@ function update(ms) {
                         targetRoom.occupant.active = true;
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "neutralizing");
+                        sExorcism.play();
                         neutralize(turnGuest);
                         turnGuest.moved = true;
                         return;
@@ -972,6 +1037,7 @@ function update(ms) {
                         console.log(turnGuest.id + " fucking");
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "fucking");
+                        sMoans.play();
                         targetRoom.occupant.active = false;
                         targetRoom.occupant.neutralized = true;
                         disturbNearby(turnGuest, targetRoom);
@@ -986,6 +1052,7 @@ function update(ms) {
                         if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
                             console.log(turnGuest.id + " victory");
                             doAnim(turnGuest, "killing");
+                            if (turnGuest.weaponSound) { turnGuest.weaponSound.play(); }
                             kill(targetRoom.occupant);
                         } else {
                             console.log(turnGuest.id + " defeat");
@@ -993,6 +1060,7 @@ function update(ms) {
                             targetRoom.occupant.active = true;
                             targetRoom.occupant.xFlipForAnimation = true;
                             doAnim(targetRoom.occupant, "killing");
+                            if (targetRoom.occupant.weaponSound) { targetRoom.occupant.weaponSound.play(); }
                             kill(turnGuest);
                             turnGuest = null;
                             targetRoom = null;
@@ -1004,6 +1072,7 @@ function update(ms) {
                         turnGuest.moved = true;
                         turnGuest.stolenFrom = false;
                         turnGuest.stolenItem = turnGuest.stealable;
+                        sTheft.play();
                         targetRoom.occupant.stolenItem = null;
                         doAnim(turnGuest, "stealing");
                         return;
@@ -1034,6 +1103,7 @@ function update(ms) {
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "killing");
                         kill(turnGuest);
+                        if (targetRoom.occupant.weaponSound) { targetRoom.occupant.weaponSound.play(); }
                         disturbNearby(targetRoom.occupant, targetRoom);
                         turnGuest = null;
                         targetRoom = null;
@@ -1056,6 +1126,7 @@ function update(ms) {
                     }
                     console.log(turnGuest.id + " stealing");
                     turnGuest.stolenItem = targetRoom.occupant.stealable;
+                    sTheft.play();
                     targetRoom.occupant.stolenFrom = true;
                     if (targetRoom.occupant.stealingNeutralizes) {
                         targetRoom.occupant.neutralized = true;
@@ -1076,6 +1147,7 @@ function update(ms) {
                         targetRoom.occupant.active = true;
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "neutralizing");
+                        sExorcism.play();
                         neutralize(turnGuest);
                         turnGuest.moved = true;
                     } else {
@@ -1083,6 +1155,7 @@ function update(ms) {
                         if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
                             console.log(turnGuest.id + " victory");
                             doAnim(turnGuest, "killing");
+                            if (turnGuest.weaponSound) { turnGuest.weaponSound.play(); }
                             turnGuest.moved = true;
                             kill(targetRoom.occupant);
                         } else {
@@ -1091,6 +1164,7 @@ function update(ms) {
                             targetRoom.occupant.active = true;
                             targetRoom.occupant.xFlipForAnimation = true;
                             doAnim(targetRoom.occupant, "killing");
+                            if (targetRoom.occupant.weaponSound) { targetRoom.occupant.weaponSound.play(); }
                             kill(turnGuest);
                             turnGuest = null;
                             targetRoom = null;
@@ -1129,6 +1203,7 @@ function update(ms) {
             if (guestWait == 0) {
                 animate(guest, "standing");
                 if (guest.introParticles) {
+                    sPoof.play();
                     for (var i = 0; i < guest.introParticles.number; i++) {
                         var angle = Math.random() * Math.PI * 2;
                         var dist = Math.random() * 180;
