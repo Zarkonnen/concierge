@@ -169,7 +169,8 @@ var peopleList = [
         neutralizes: {werewolf: 1, vampire: 1},
         stealable: "priestcross",
         neutralized: false,
-        stealingNeutralizes: true
+        stealingNeutralizes: true,
+        disturbanceNeutralizes: true
     },
     {
         id: "vamp",
@@ -249,7 +250,10 @@ var peopleList = [
         y: 0,
         active: false,
         strength: 2,
-        alive: true
+        alive: true,
+        disturbanceActivates: true,
+        rampagesIfActivated: true,
+        moveTo: -1
     },
 ];
 var people = {};
@@ -290,6 +294,7 @@ var postAnimWait = 0;
 var deactivatePostAnim = false;
 var activatePostAnim = false;
 var emitTick = 0;
+var toDisturbRoomIndexes = [];
 var particles = [];
 var rooms = [
     {
@@ -379,10 +384,10 @@ function pickGuest() {
     var guestID = ids[Math.floor(Math.random() * ids.length)];
     if (!guestIDs.snorer) {
         guestID = "snorer";
-    }/* else if (!guestIDs.vamp) {
-        guestID = "vamp";
+    } else if (!guestIDs.insomniac) {
+        guestID = "insomniac";
     }
-     else if (!guestIDs.suicide) {
+    /* else if (!guestIDs.suicide) {
         guestID = "suicide";
     }*/
     guestIDs[guestID] = 1;
@@ -495,6 +500,14 @@ function input(ms) {
 
 function doesActivate(occupant) {
     return occupant.fucks || occupant.snores || occupant.attacks || occupant.steals || occupant.suicides || (occupant.rampageForStolenItem && occupant.stolenFrom);
+}
+
+function disturbNearby(actor, room) {
+    toDisturbRoomIndexes = [
+        (rooms.indexOf(room) + rooms.length + 1) % rooms.length,
+        (rooms.indexOf(room) + rooms.length - 1) % rooms.length
+    ];
+    console.log(actor.id + " disturbing rooms of " + rooms[toDisturbRoomIndexes[0]].occupant.id + " and " + rooms[toDisturbRoomIndexes[1]].occupant.id);
 }
 
 function update(ms) {
@@ -616,6 +629,24 @@ function update(ms) {
             toNeutralize = null;
         } else {
             if (!turnGuest) {
+                if (toDisturbRoomIndexes.length > 0) {
+                    console.log("Processing disturbances.");
+                    var room = rooms[toDisturbRoomIndexes[0]];
+                    toDisturbRoomIndexes.splice(0, 1);
+                    if (room.occupant.alive && !room.occupant.neutralized) {
+                        if (room.occupant.disturbanceActivates) {
+                            turnGuest = room.occupant;
+                            turnGuestRoom = room;
+                            console.log(turnGuest.id + " activated by disturbance");
+                            return;
+                        }
+                        if (room.occupant.disturbanceNeutralizes) {
+                            doAnim(room.occupant, "interrupted");
+                            console.log(room.occupant.id + " neutralized by disturbance");
+                            return;
+                        }
+                    }
+                }
                 console.log("Finding next guest");
                 for (var i = 0; i < rooms.length; i++) {
                     var occupant = rooms[i].occupant;
@@ -645,7 +676,8 @@ function update(ms) {
                         doAnim(turnGuest, "snoring");
                         deactivatePostAnim = true;
                         turnGuest.moved = true;
-                    } else if (turnGuest.rampageForStolenItem) {
+                        disturbNearby(turnGuest, turnGuestRoom);
+                    } else if (turnGuest.rampageForStolenItem || turnGuest.rampagesIfActivated) {
                         console.log(turnGuest.id + " is beginning to rampage");
                         activatePostAnim = true;
                         doAnim(turnGuest, "angry");
@@ -659,6 +691,7 @@ function update(ms) {
                     console.log(turnGuest.id + " commits suicide");
                     doAnim(turnGuest, "suicide");
                     kill(turnGuest);
+                    disturbNearby(turnGuest, turnGuestRoom);
                     turnGuest = null;
                     return;
                 }
@@ -675,13 +708,15 @@ function update(ms) {
                         doAnim(targetRoom.occupant, "fucking");
                         targetRoom.occupant.active = false;
                         targetRoom.occupant.neutralized = true;
+                        disturbNearby(turnGuest, targetRoom);
                     }
                     turnGuest.moved = true;
                     return;
                 }
-                if (turnGuest.rampageForStolenItem) {
+                if (turnGuest.rampageForStolenItem || turnGuest.rampagesIfActivated) {
                     if (targetRoom.occupant.alive) {
                         console.log(turnGuest.id + " attacking in rampage");
+                        disturbNearby(turnGuest, targetRoom);
                         if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
                             console.log(turnGuest.id + " victory");
                             doAnim(turnGuest, "killing");
@@ -698,7 +733,7 @@ function update(ms) {
                         }
                         return;
                     }
-                    if (targetRoom.occupant.stolenItem == turnGuest.stealable) {
+                    if (turnGuest.rampageForStolenItem && targetRoom.occupant.stolenItem == turnGuest.stealable) {
                         console.log(turnGuest.id + " takes back the " + turnGuest.stealable);
                         turnGuest.moved = true;
                         turnGuest.stolenFrom = false;
@@ -710,6 +745,13 @@ function update(ms) {
                     console.log(turnGuest.id + " moving on in rampage");
                     var oldTargetRoom = targetRoom;
                     targetRoom = rooms[(rooms.indexOf(targetRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
+                    if (targetRoom == turnGuestRoom) {
+                        // Nothing to steal. Sad.
+                        targetRoom = oldTargetRoom;
+                        turnGuest.moved = true;
+                        console.log(turnGuest.id + " done with rampage");
+                        return;
+                    }
                     doMove(turnGuest, oldTargetRoom, targetRoom, true);
                     return;
                 }
@@ -726,6 +768,7 @@ function update(ms) {
                         targetRoom.occupant.xFlipForAnimation = true;
                         doAnim(targetRoom.occupant, "killing");
                         kill(turnGuest);
+                        disturbNearby(targetRoom.occupant, targetRoom);
                         turnGuest = null;
                         targetRoom = null;
                         return;
@@ -765,6 +808,7 @@ function update(ms) {
                         neutralize(turnGuest);
                         turnGuest.moved = true;
                     } else {
+                        disturbNearby(turnGuest, targetRoom);
                         if (turnGuest.strength > targetRoom.occupant.strength || targetRoom.occupant.neutralized) {
                             console.log(turnGuest.id + " victory");
                             doAnim(turnGuest, "killing");
