@@ -36,7 +36,14 @@ var peopleList = [
         animationT: 0,
         x: 0,
         y: 0,
-        active: false
+        active: false,
+        alive: true,
+        moved: false,
+        neutralized: false,
+        priority: 1,
+        moveTo: -5,
+        attacks: true,
+        strength: 3
     },
     {
         id: "murderer",
@@ -45,7 +52,7 @@ var peopleList = [
         body: "murdererbody",
         activeTool: "murdereraxe",
         name: "Mr. Grushko",
-        intro: "I am Mister Grusko. One room, please.",
+        intro: "I am Mister Grushko. One room, please.",
         animation: "standing",
         animationT: 0,
         x: 0,
@@ -204,6 +211,15 @@ var manager = {
 var guestIDs = {};
 var guest = pickGuest();
 var guestSaidHello = false;
+var animating = null;
+var turnGuest = null;
+var turnGuestRoom = null;
+var targetRoom = null;
+var moving = null;
+var movingFrom = null;
+var movingTo = null;
+var movingToRight = false;
+var movingToState = 0;
 var particles = [];
 var rooms = [
     {
@@ -212,7 +228,8 @@ var rooms = [
         y: 31.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: false
     },
     {
         name: "Room 2",
@@ -220,7 +237,8 @@ var rooms = [
         y: 31.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: false
     },
     {
         name: "Room 3",
@@ -228,7 +246,8 @@ var rooms = [
         y: 31.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: false
     },
     {
         name: "Room 4",
@@ -236,7 +255,8 @@ var rooms = [
         y: 426.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: true
     },
     {
         name: "Room 5",
@@ -244,7 +264,8 @@ var rooms = [
         y: 426.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: true
     },
     {
         name: "Room 6",
@@ -252,9 +273,21 @@ var rooms = [
         y: 426.5,
         w: 182,
         h: 242,
-        occupant: null
+        occupant: null,
+        bottom: true
     }
 ];
+
+function instaNight() {
+    guestIDs = {};
+    for (var i = 0; i < rooms.length; i++) {
+        var room = rooms[i];
+        room.occupant = pickGuest();
+        room.occupant.x = room.x + room.w / 4;
+        room.occupant.y = room.y + room.h / 2;
+    }
+    night = true;
+}
 
 function isFull() {
     for (var i = 0; i < rooms.length; i++) {
@@ -266,6 +299,9 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
+    if (!guestIDs.werewolf) {
+        guestID = "werewolf";
+    }
     guestIDs[guestID] = 1;
     var guest = people[guestID];
     animate(guest, guest.introParticles ? "standing" : "walking");
@@ -282,11 +318,35 @@ function animTick(person, ms) {
     if (person.animationT > animLengths[person.animation]) {
         person.animation = "standing";
         person.animationT = 0;
+        return null;
     }
+    return person;
+}
+
+function doAnim(person, animation) {
+    animate(person, animation);
+    animating = person;
+}
+
+var MT_START = 0;
+var MT_SRC_CENTER = 1;
+var MT_SRC_CORRIDOR = 2;
+var MT_TRG_CORRIDOR = 3;
+var MT_TRG_CENTER = 4;
+var MT_END = 5;
+
+function doMove(person, from, room, right) {
+    animate(person, "moving");
+    animating = person;
+    moving = person;
+    movingFrom = from;
+    movingTo = room;
+    movingToRight = right;
+    movingToState = MT_START;
 }
 
 var animLengths = {
-    activating: 770,
+    activating: 385,
     walking: 100000,
     standing: 100000,
     killing: 1000,
@@ -299,6 +359,10 @@ var animLengths = {
 };
 
 function input(ms) {
+    if (!night) {
+        instaNight();
+        return;
+    }
     if (night) {
         // Just watch.
     } else if (assignGuest) {
@@ -307,7 +371,7 @@ function input(ms) {
                 var room = rooms[i];
                 if (!room.occupant && click.x / scale > room.x + w / 2 - 500 && click.x / scale < room.x + room.w + w / 2 - 500 && click.y / scale > room.y && click.y / scale < room.y + room.h) {
                     room.occupant = guest;
-                    guest.x = room.x + room.w / 2;
+                    guest.x = room.x + room.w / 4;
                     guest.y = room.y + room.h / 2;
                     if (isFull()){
                         guest = null;
@@ -359,28 +423,102 @@ function update(ms) {
             i--;
         }
     }
-    if (guest) {
-        animTick(guest, ms);
-    }
-    animTick(manager, ms);
-    if (guestWait > 0) {
-        guestWait = Math.max(0, guestWait - ms);
-        if (guestWait == 0) {
-            animate(guest, "standing");
-            if (guest.introParticles) {
-                for (var i = 0; i < guest.introParticles.number; i++) {
-                    var angle = Math.random() * Math.PI * 2;
-                    var dist = Math.random() * 180;
-                    var speed = guest.introParticles.speed * (Math.random() + 0.5);
-                    particles.push({
-                        color: guest.introParticles.color,
-                        size: guest.introParticles.size,
-                        x: w / 2 + Math.cos(angle) * dist,
-                        y: h / 2 + Math.sin(angle) * dist,
-                        dx: Math.cos(angle) * speed,
-                        dy: Math.sin(angle) * speed,
-                        life: guest.introParticles.life
-                    });
+    if (night) {
+        if (animating) {
+            animating = animTick(animating, ms);
+            if (moving) {
+                var tx = 0;
+                var ty = 0;
+                switch (movingToState) {
+                    case MT_START:
+                        tx = movingFrom.x + movingFrom.w / 2;
+                        ty = movingFrom.bottom ? (movingFrom.y + movingFrom.h * 1 / 4) : (movingFrom.y + movingFrom.h * 3 / 4);
+                        break;
+                    case MT_SRC_CENTER:
+                        tx = movingFrom.x + movingFrom.w / 2;
+                        ty = 350;
+                        break;
+                    case MT_SRC_CORRIDOR:
+                        tx = movingTo.x + movingTo.w / 2;
+                        ty = 350;
+                        break;
+                    case MT_TRG_CORRIDOR:
+                        tx = movingTo.x + movingTo.w / 2;
+                        ty = movingTo.bottom ? (movingTo.y + movingTo.h * 1 / 4) : (movingTo.y + movingTo.h * 3 / 4);
+                        break;
+                    case MT_TRG_CENTER:
+                        tx = movingToRight ? (movingTo.x + movingTo.w * 3 / 4) : (movingTo.x + movingTo.w * 1 / 4);
+                        ty = movingTo.y + movingTo.h / 2;
+                        break;
+                    case MT_END:
+                        break;
+                }
+                var spd = ms * 0.08;
+                var distSq = (moving.x - tx) * (moving.x - tx) + (moving.y - ty) * (moving.y - ty);
+                if (distSq < spd * spd) {
+                    moving.x = tx;
+                    moving.y = ty;
+                    movingToState++;
+                    if (movingToState == MT_END) {
+                        animate(moving, "standing");
+                        animating = null;
+                        moving = null;
+                    }
+                } else {
+                    var angle = Math.atan2(ty - moving.y, tx - moving.x);
+                    moving.x += Math.cos(angle) * spd;
+                    moving.y += Math.sin(angle) * spd;
+                }
+            }
+        } else {
+            if (!turnGuest) {
+                for (var i = 0; i < rooms.length; i++) {
+                    var occupant = rooms[i].occupant;
+                    if (occupant.priority && !occupant.moved && occupant.alive && !occupant.neutralized && (!turnGuest || occupant.priority < turnGuest)) {
+                        turnGuest = occupant;
+                        turnGuestRoom = rooms[i];
+                    }
+                }
+            }
+            if (!turnGuest) {
+                // qqDPS Final Score
+                return;
+            }
+            if (!turnGuest.active) {
+                turnGuest.active = true;
+                doAnim(turnGuest, "activating");
+                return;
+            }
+            if (turnGuest.moveTo && !targetRoom) {
+                targetRoom = rooms[(rooms.indexOf(turnGuestRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
+                doMove(turnGuest, turnGuestRoom, targetRoom, true);
+                return;
+            }
+        }
+    } else {
+        if (guest) {
+            animTick(guest, ms);
+        }
+        animTick(manager, ms);
+        if (guestWait > 0) {
+            guestWait = Math.max(0, guestWait - ms);
+            if (guestWait == 0) {
+                animate(guest, "standing");
+                if (guest.introParticles) {
+                    for (var i = 0; i < guest.introParticles.number; i++) {
+                        var angle = Math.random() * Math.PI * 2;
+                        var dist = Math.random() * 180;
+                        var speed = guest.introParticles.speed * (Math.random() + 0.5);
+                        particles.push({
+                            color: guest.introParticles.color,
+                            size: guest.introParticles.size,
+                            x: w / 2 + Math.cos(angle) * dist,
+                            y: h / 2 + Math.sin(angle) * dist,
+                            dx: Math.cos(angle) * speed,
+                            dy: Math.sin(angle) * speed,
+                            life: guest.introParticles.life
+                        });
+                    }
                 }
             }
         }
@@ -400,9 +538,9 @@ function person(person, x, y, active) {
     var t = person.animationT;
     switch (person.animation) {
         case "activating":
-            bodyY += Math.sin(t * 0.004) * 50;
-            headY -= Math.sin(t * 0.004) * 50;
-            if (t % 775 < 775 / 2) {
+            bodyY += Math.sin(t * 0.008) * 80;
+            headY -= Math.sin(t * 0.008) * 80;
+            if (t % 385 < 385 / 2) {
                 body = person.body;
                 head = person.head;
                 tool = person.tool;
