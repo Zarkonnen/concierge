@@ -8,296 +8,28 @@
     <body style="margin: 0; padding: 0; background: #333333;">
         <canvas width="800" height="600" allowfullscreen="true" id="gameCanvas" style="margin-left: 10px; margin-top: 10px;"></canvas>
         <script>
-var peopleList = [
-    {
-        id: "spy",
-        head: "spyhead",
-        activeHead: "spyactivehead",
-        deadHead: "spydeadhead",
-        body: "spybody",
-        activeTool: "spygun",
-        name: "Septimus Smith",
-        intro: "The name's Smith. Septimus Smith.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 4,
-        alive: true,
-        stealable: "suitcase",
-        rampageForStolenItem: true,
-        priority: 100,
-        moveTo: 1
-    },
-    {
-        id: "werewolf",
-        head: "werewolfhead",
-        activeHead: "werewolfactivehead",
-        deadHead: "werewolfdeadhead",
-        body: "werewolfbody",
-        activeBody: "werewolfactivebody",
-        activeTool: "werewolfclaw",
-        name: "U.P. Garoul",
-        intro: "Lovely moon tonight, er, right?",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        alive: true,
-        moved: false,
-        neutralized: false,
-        priority: 70,
-        moveTo: -1,
-        attacks: true,
-        strength: 3
-    },
-    {
-        id: "murderer",
-        head: "murdererhead",
-        activeHead: "murdereractivehead",
-        deadHead: "murdererdeadhead",
-        body: "murdererbody",
-        activeTool: "murdereraxe",
-        name: "Mr. Grushko",
-        intro: "I am Mister Grushko. One room, please.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 5,
-        alive: true,
-        neutralized: false,
-        moved: false,
-        stealable: "murdereraxe",
-        stealingNeutralizes: true,
-        attacks: true,
-        moveTo: 2,
-        priority: 90
-    },
-    {
-        id: "suicide",
-        head: "suicidehead",
-        activeHead: "suicideactivehead",
-        deadHead: "suicidedeadhead",
-        body: "suicidebody",
-        activeTool: "suicidegun",
-        name: "Werther Junge",
-        intro: "It's OK if I pay in the morning, right?",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        stealable: "suicidegun",
-        stealingNeutralizes: true,
-        suicides: true,
-        priority: 110
-    },
-    {
-        id: "cultist",
-        head: "cultisthead",
-        activeHead: "cultistactivehead",
-        deadHead: "cultistdeadhead",
-        body: "cultistbody",
-        activeBody: "cultistactivebody",
-        activeTool: "cultiststaff",
-        name: "Philippa Marsh",
-        intro: "Greetings. Is my room ready?",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        stealable: "cultiststaff",
-        stealingNeutralizes: true,
-        priority: 40,
-        summons: true,
-        disturbanceNeutralizes: true
-    },
-    {
-        id: "snorer",
-        head: "snorerhead",
-        activeHead: "snoreractivehead",
-        deadHead: "snorerdeadhead",
-        body: "snorerbody",
-        name: "Mr. O'Doul",
-        intro: "Can't wait for a good night's sleep, eh?",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        snores: true,
-        priority: 50
-    },
-    {
-        id: "granny",
-        head: "grannyhead",
-        deadHead: "grannydeadhead",
-        body: "grannybody",
-        name: "Mrs. Spelt",
-        intro: "Hello, dearie.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 7,
-        alive: true
-    },
-    {
-        id: "priest",
-        head: "priesthead",
-        deadHead: "priestdeadhead",
-        body: "priestbody",
-        activeTool: "priestcross",
-        name: "Father Rumbucket",
-        intro: "Hello.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        neutralizes: {werewolf: 1, vampire: 1},
-        stealable: "priestcross",
-        neutralized: false,
-        stealingNeutralizes: true
-    },
-    {
-        id: "vamp",
-        head: "vamphead",
-        activeHead: "vampactivehead",
-        deadHead: "vampdeadhead",
-        body: "vampbody",
-        activeBody: "vampactivebody",
-        name: "Raquelle",
-        intro: "Hi! *giggles*",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        moveTo: 3,
-        fucks: true,
-        priority: 80,
-        winsOverVampire: true
-    },
-    {
-        id: "vampire",
-        head: "vampirehead",
-        activeHead: "vampireactivehead",
-        deadHead: "vampiredeadhead",
-        body: "vampirebody",
-        name: "A.L. Ucard",
-        intro: "Hello, my friend. One room please. I won't be needing dinner.",
-        animation: "standing",
-        animationT: 0,
-        introParticles: {
-            color: "black",
-            number: 100,
-            size: 80,
-            speed: 0.5,
-            life: 500
-        },
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 6,
-        alive: true,
-        killsIntruders: true,
-        priority: 60,
-        feeds: true,
-        moveTo: -1
-    },
-    {
-        id: "thief",
-        head: "thiefhead",
-        deadHead: "thiefdeadhead",
-        body: "thiefbody",
-        activeTool: "thiefcrowbar",
-        name: "T. Felofavan", // It fell off a van
-        intro: "Lovely hotel you've got here.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 1,
-        alive: true,
-        steals: true,
-        priority: 30,
-        moveTo: 1
-    },
-    {
-        id: "insomniac",
-        head: "insomniachead",
-        activeHead: "insomniacactivehead",
-        deadHead: "insomniacdeadhead",
-        body: "insomniacbody",
-        activeTool: "insomniacknife",
-        name: "S. Onpyh",
-        intro: "I'd like your quietest room.",
-        animation: "standing",
-        animationT: 0,
-        x: 0,
-        y: 0,
-        active: false,
-        strength: 2,
-        alive: true,
-        disturbanceActivates: true,
-        rampagesIfActivated: true,
-        moveTo: -1
-    },
-];
-var people = {};
-for (var i = 0; i < peopleList.length; i++) {
-    people[peopleList[i].id] = peopleList[i];
-}
+
 
 // State
+var peopleList = [];
+var people = {};
 var splash = true;
 var night = false;
+var morning = false;
 var intro = true;
 var epilogue = false;
 var intertitle = null;
 var intertitleT = 0;
 var managerOut = true;
 var introLine = 0;
-var introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
-var epilogueLines = [
-    "Everyone is dead! How could this happen?",
-    "One survivor? What happened?",
-    "Nearly everyone died in the night - we are ruined!",
-    "Half the guests died! Our reputation is in tatters!",
-    "Two guests dead? What a terrible tragedy!",
-    "Another guest died? What an unfortunate event!",
-    "Glad to see the night went quietly. Keep up the good work."
-];
+var introLines = [];
+var epilogueLines = [];
 var assignGuest = false;
 var guestWait = 0;
 var managerX = 0;
-var manager = {
-    head: "managerhead",
-    body: "managerbody",
-    animation: "talking",
-    animationT: 0,
-    alive: true
-};
+var manager = null;
 var guestIDs = {};
-var guest = pickGuest();
+var guest = null;
 var guestSaidHello = false;
 var animating = null;
 var turnGuest = null;
@@ -320,62 +52,382 @@ var apocalypse = false;
 var tentacle = null;
 var tentacleX = 0;
 var tentacleY = 0;
-var rooms = [
-    {
-        name: "Room 1",
-        x: 256,
-        y: 31.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: false
-    },
-    {
-        name: "Room 2",
-        x: 256 + 205,
-        y: 31.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: false
-    },
-    {
-        name: "Room 3",
-        x: 256 + 205 * 2,
-        y: 31.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: false
-    },
-    {
-        name: "Room 4",
-        x: 256 + 205 * 2,
-        y: 426.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: true
-    },
-    {
-        name: "Room 5",
-        x: 256 + 205,
-        y: 426.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: true
-    },
-    {
-        name: "Room 6",
-        x: 256,
-        y: 426.5,
-        w: 182,
-        h: 242,
-        occupant: null,
-        bottom: true
+var apocalypseAmt = 0;
+var rooms = [];
+
+function reset() {
+    peopleList = [
+        {
+            id: "spy",
+            head: "spyhead",
+            activeHead: "spyactivehead",
+            deadHead: "spydeadhead",
+            body: "spybody",
+            activeTool: "spygun",
+            name: "Septimus Smith",
+            intro: "The name's Smith. Septimus Smith.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 4,
+            alive: true,
+            stealable: "suitcase",
+            rampageForStolenItem: true,
+            priority: 100,
+            moveTo: 1
+        },
+        {
+            id: "werewolf",
+            head: "werewolfhead",
+            activeHead: "werewolfactivehead",
+            deadHead: "werewolfdeadhead",
+            body: "werewolfbody",
+            activeBody: "werewolfactivebody",
+            activeTool: "werewolfclaw",
+            name: "U.P. Garoul",
+            intro: "Lovely moon tonight, er, right?",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            alive: true,
+            moved: false,
+            neutralized: false,
+            priority: 70,
+            moveTo: -1,
+            attacks: true,
+            strength: 3
+        },
+        {
+            id: "murderer",
+            head: "murdererhead",
+            activeHead: "murdereractivehead",
+            deadHead: "murdererdeadhead",
+            body: "murdererbody",
+            activeTool: "murdereraxe",
+            name: "Mr. Grushko",
+            intro: "I am Mister Grushko. One room, please.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 5,
+            alive: true,
+            neutralized: false,
+            moved: false,
+            stealable: "murdereraxe",
+            stealingNeutralizes: true,
+            attacks: true,
+            moveTo: 2,
+            priority: 90
+        },
+        {
+            id: "suicide",
+            head: "suicidehead",
+            activeHead: "suicideactivehead",
+            deadHead: "suicidedeadhead",
+            body: "suicidebody",
+            activeTool: "suicidegun",
+            name: "Werther Junge",
+            intro: "It's OK if I pay in the morning, right?",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            stealable: "suicidegun",
+            stealingNeutralizes: true,
+            suicides: true,
+            priority: 110
+        },
+        {
+            id: "cultist",
+            head: "cultisthead",
+            activeHead: "cultistactivehead",
+            deadHead: "cultistdeadhead",
+            body: "cultistbody",
+            activeBody: "cultistactivebody",
+            activeTool: "cultiststaff",
+            name: "Philippa Marsh",
+            intro: "Greetings. Is my room ready?",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            stealable: "cultiststaff",
+            stealingNeutralizes: true,
+            priority: 40,
+            summons: true,
+            disturbanceNeutralizes: true
+        },
+        {
+            id: "snorer",
+            head: "snorerhead",
+            activeHead: "snoreractivehead",
+            deadHead: "snorerdeadhead",
+            body: "snorerbody",
+            name: "Mr. O'Doul",
+            intro: "Can't wait for a good night's sleep, eh?",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            snores: true,
+            priority: 50
+        },
+        {
+            id: "granny",
+            head: "grannyhead",
+            deadHead: "grannydeadhead",
+            body: "grannybody",
+            name: "Mrs. Spelt",
+            intro: "Hello, dearie.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 7,
+            alive: true
+        },
+        {
+            id: "priest",
+            head: "priesthead",
+            deadHead: "priestdeadhead",
+            body: "priestbody",
+            activeTool: "priestcross",
+            name: "Father Rumbucket",
+            intro: "Hello.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            neutralizes: {werewolf: 1, vampire: 1},
+            stealable: "priestcross",
+            neutralized: false,
+            stealingNeutralizes: true
+        },
+        {
+            id: "vamp",
+            head: "vamphead",
+            activeHead: "vampactivehead",
+            deadHead: "vampdeadhead",
+            body: "vampbody",
+            activeBody: "vampactivebody",
+            name: "Raquelle",
+            intro: "Hi! *giggles*",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            moveTo: 3,
+            fucks: true,
+            priority: 80,
+            winsOverVampire: true
+        },
+        {
+            id: "vampire",
+            head: "vampirehead",
+            activeHead: "vampireactivehead",
+            deadHead: "vampiredeadhead",
+            body: "vampirebody",
+            name: "A.L. Ucard",
+            intro: "Hello, my friend. One room please. I won't be needing dinner.",
+            animation: "standing",
+            animationT: 0,
+            introParticles: {
+                color: "black",
+                number: 100,
+                size: 80,
+                speed: 0.5,
+                life: 500
+            },
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 6,
+            alive: true,
+            killsIntruders: true,
+            priority: 60,
+            feeds: true,
+            moveTo: -1
+        },
+        {
+            id: "thief",
+            head: "thiefhead",
+            deadHead: "thiefdeadhead",
+            body: "thiefbody",
+            activeTool: "thiefcrowbar",
+            name: "T. Felofavan", // It fell off a van
+            intro: "Lovely hotel you've got here.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 1,
+            alive: true,
+            steals: true,
+            priority: 30,
+            moveTo: 1
+        },
+        {
+            id: "insomniac",
+            head: "insomniachead",
+            activeHead: "insomniacactivehead",
+            deadHead: "insomniacdeadhead",
+            body: "insomniacbody",
+            activeTool: "insomniacknife",
+            name: "S. Onpyh",
+            intro: "I'd like your quietest room.",
+            animation: "standing",
+            animationT: 0,
+            x: 0,
+            y: 0,
+            active: false,
+            strength: 2,
+            alive: true,
+            disturbanceActivates: true,
+            rampagesIfActivated: true,
+            moveTo: -1
+        },
+    ];
+    people = {};
+    for (var i = 0; i < peopleList.length; i++) {
+        people[peopleList[i].id] = peopleList[i];
     }
-];
+
+    // State
+    night = false;
+    morning = false;
+    intro = true;
+    epilogue = false;
+    intertitle = null;
+    intertitleT = 0;
+    managerOut = true;
+    introLine = 0;
+    introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
+    epilogueLines = [
+        "Everyone is dead! How could this happen?",
+        "One survivor? What happened?",
+        "Nearly everyone died in the night - we are ruined!",
+        "Half the guests died! Our reputation is in tatters!",
+        "Two guests dead? What a terrible tragedy!",
+        "Another guest died? What an unfortunate event!",
+        "Glad to see the night went quietly. Keep up the good work."
+    ];
+    assignGuest = false;
+    guestWait = 0;
+    managerX = 0;
+    manager = {
+        head: "managerhead",
+        body: "managerbody",
+        animation: "talking",
+        animationT: 0,
+        alive: true
+    };
+    guestIDs = {};
+    guest = pickGuest();
+    guestSaidHello = false;
+    animating = null;
+    turnGuest = null;
+    turnGuestRoom = null;
+    targetRoom = null;
+    moving = null;
+    movingFrom = null;
+    movingTo = null;
+    movingToRight = false;
+    movingToState = 0;
+    toKill = null;
+    toNeutralize = null;
+    postAnimWait = 0;
+    deactivatePostAnim = false;
+    activatePostAnim = false;
+    emitTick = 0;
+    toDisturbRoomIndexes = [];
+    particles = [];
+    apocalypse = false;
+    tentacle = null;
+    tentacleX = 0;
+    tentacleY = 0;
+    apocalypseAmt = 0;
+    rooms = [
+        {
+            name: "Room 1",
+            x: 256,
+            y: 31.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: false
+        },
+        {
+            name: "Room 2",
+            x: 256 + 205,
+            y: 31.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: false
+        },
+        {
+            name: "Room 3",
+            x: 256 + 205 * 2,
+            y: 31.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: false
+        },
+        {
+            name: "Room 4",
+            x: 256 + 205 * 2,
+            y: 426.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: true
+        },
+        {
+            name: "Room 5",
+            x: 256 + 205,
+            y: 426.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: true
+        },
+        {
+            name: "Room 6",
+            x: 256,
+            y: 426.5,
+            w: 182,
+            h: 242,
+            occupant: null,
+            bottom: true
+        }
+    ];
+}
+
+reset();
 
 function numSurvivors() {
     var n = 0;
@@ -406,10 +458,10 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
-    if (!guestIDs.cultist) {
-        guestID = "cultist";
-    } else if (!guestIDs.granny) {
-        guestID = "granny";
+    /*if (!guestIDs.vampire) {
+        guestID = "vampire";
+    } else if (!guestIDs.vamp) {
+        guestID = "vamp";
     }
     /* else if (!guestIDs.vamp) {
         guestID = "vamp";
@@ -487,6 +539,13 @@ function input(ms) {
         instaNight();
         return;
     }*/
+    if (epilogue) {
+        if (click && cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+            reset();
+            intro = false;
+        }
+        return;
+    }
     if (night) {
         // Just watch.
     } else if (assignGuest) {
@@ -578,7 +637,7 @@ function update(ms) {
         }
         if (people.cultist != animating) {
             animTick(people.cultist, ms);
-            if (people.cultist.animation == "summoning" && emitTick % 4 == 0) {
+            if (people.cultist.animation == "summoning" && emitTick % (apocalypseAmt > 0 ? 2 : 4) == 0) {
                 var angle = Math.random() * Math.PI * 2;
                 var dist = Math.random() * 20;
                 var speed = Math.random() * 0.1 + 0.1;
@@ -592,7 +651,7 @@ function update(ms) {
                     life: 100 + Math.random() * 200
                 });
             }
-            if (people.cultist.animation == "summoning" && emitTick % 17 == 0) {
+            if (people.cultist.animation == "summoning" && emitTick % (apocalypseAmt > 0 ? 7 : 17) == 0) {
                 var angle = Math.random() * Math.PI * 2;
                 var dist = Math.random() * 10;
                 particles.push({
@@ -605,7 +664,7 @@ function update(ms) {
                     life: 500 + Math.random() * 300
                 });
             }
-            if (people.cultist.animation == "summoning" && emitTick % 209 == 0) {
+            if (people.cultist.animation == "summoning" && emitTick % (apocalypseAmt > 0 ? 66 : 209) == 0) {
                 particles.push({
                     color: "#ffffff",
                     letter: ["Fhtagn!", "Cthulhu!", "Dagon!", "Shub-Niggurath!", "Fnord!"][Math.floor(Math.random() * 5)],
@@ -732,7 +791,7 @@ function update(ms) {
                 var dist = Math.random() * 20;
                 var speed = Math.random() * 0.5;
                 particles.push({
-                    color: "#cf0000",
+                    color: (toKill.id == "vampire" && morning ? "white" : "#cf0000"),
                     size: 30,
                     x: toKill.x + Math.cos(angle) * dist,
                     y: toKill.y + Math.sin(angle) * dist,
@@ -752,13 +811,16 @@ function update(ms) {
             postAnimWait = 500;
             toNeutralize = null;
         } else if (apocalypse) {
-            if (numSurvivors == 0) {
-                apocalypse = false;
-            } else {
-                for (var i = 0; i < rooms.length; i++) {
-                    if (rooms[i].occupant.alive) {
-                        tentacleKill(rooms[i].occupant);
-                        return;
+            apocalypseAmt += ms;
+            if (apocalypseAmt >= 8000) {
+                if (numSurvivors() == 0) {
+                    apocalypse = false;
+                } else {
+                    for (var i = 0; i < rooms.length; i++) {
+                        if (rooms[i].occupant.alive) {
+                            tentacleKill(rooms[i].occupant);
+                            return;
+                        }
                     }
                 }
             }
@@ -797,15 +859,23 @@ function update(ms) {
                 console.log("Turns done");
                 if (people.vampire.alive && people.vampire.feeding && people.vampire.feedingRoom.occupant.alive) {
                     if (people.vampire.feedingRoom.occupant.winsOverVampire) {
+                        intertitle = "The vampire, entranced by the beauty of his victim, is surprised by the rays of the sun.";
+                        intertitleT = 5000;
+                        morning = true;
+                        postAnimWait = 1000;
                         console.log("The vampire stayed too late!");
                         kill(people.vampire);
                     } else {
                         console.log("The vampire kills!");
+                        intertitle = "The vampire finishes feasting upon his victim.";
+                        intertitleT = 2000;
+                        postAnimWait = 1000;
                         kill(people.vampire.feedingRoom.occupant);
                     }
                     return;
                 }
                 if (people.cultist.alive && people.cultist.moved && !people.cultist.neutralized) {
+                    console.log("Apocalypse!");
                     apocalypse = true;
                     return;
                 }
@@ -1291,7 +1361,7 @@ function draw() {
         c.fillText("TRY AGAIN", w / 2 - c.measureText("TRY AGAIN").width / 2, 632);
         return;
     } else if (night) {
-        img("rooms-night", w / 2, h / 2);
+        img(morning ? "rooms" : "rooms-night", w / 2, h / 2);
         c.translate(w / 2 - 500, 0);
         text("Survivors: " + numSurvivors(), 200, 350);
         for (var i = 0; i < rooms.length; i++) {
