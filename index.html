@@ -5,26 +5,387 @@
         <script src="jquery-3.1.1.min.js"></script>
         <script src="howler.min.js"></script>
     </head>
-    <body style="margin: 0; padding: 0; background: #2e1d11;">
-        <canvas width="800" height="600" allowfullscreen="true" id="gameCanvas" style="cursor: none; margin-left: 10px; margin-top: 10px;"></canvas>
+    <body style="margin: 0; padding: 0; background: #333333;">
+        <canvas width="800" height="600" allowfullscreen="true" id="gameCanvas" style="margin-left: 10px; margin-top: 10px;"></canvas>
         <script>
+var peopleList = [
+    {
+        id: "spy",
+        head: "spyhead",
+        activeHead: "spyactivehead",
+        body: "spybody",
+        activeTool: "spygun",
+        name: "Septimus Smith",
+        intro: "The name's Smith. Septimus Smith."
+    },
+    {
+        id: "werewolf",
+        head: "werewolfhead",
+        activeHead: "werewolfactivehead",
+        body: "werewolfbody",
+        activeBody: "werewolfactivebody",
+        activeTool: "werewolfclaw",
+        name: "U.P. Garoul",
+        intro: "Lovely moon tonight, er, right?"
+    },
+    {
+        id: "murderer",
+        head: "murdererhead",
+        activeHead: "murdereractivehead",
+        body: "murdererbody",
+        activeTool: "murdereraxe",
+        name: "Mr. Grushko",
+        intro: "I am Mister Grusko. One room, please."
+    },
+    {
+        id: "suicide",
+        head: "suicidehead",
+        activeHead: "suicideactivehead",
+        body: "suicidebody",
+        activeTool: "suicidegun",
+        name: "Werther Junge",
+        intro: "It's OK if I pay in the morning, right?"
+    },
+    {
+        id: "cultist",
+        head: "cultisthead",
+        activeHead: "cultistactivehead",
+        body: "cultistbody",
+        activeBody: "cultistactivebody",
+        activeTool: "cultiststaff",
+        name: "Philippa Marsh",
+        intro: "Greetings. Is my room ready?"
+    },
+    {
+        id: "snorer",
+        head: "snorerhead",
+        activeHead: "snoreractivehead",
+        body: "snorerbody",
+        name: "Mr. O'Doul",
+        intro: "Can't wait for a good night's sleep, eh?"
+    },
+    {
+        id: "granny",
+        head: "grannyhead",
+        body: "grannybody",
+        name: "Mrs. Spelt",
+        intro: "Hello, dearie."
+    },
+    {
+        id: "priest",
+        head: "priesthead",
+        body: "priestbody",
+        activeTool: "priestcross",
+        name: "Father Rumbucket",
+        intro: "Hello."
+    },
+    {
+        id: "vamp",
+        head: "vamphead",
+        activeHead: "vampactivehead",
+        body: "vampbody",
+        activeBody: "vampactivebody",
+        name: "Raquelle",
+        intro: "Hi! *giggles*"
+    },
+    {
+        id: "vampire",
+        head: "vampirehead",
+        activeHead: "vampireactivehead",
+        body: "vampirebody",
+        name: "A.L. Ucard",
+        intro: "Hello, my friend. One room please. I won't be needing dinner.",
+        animation: "standing",
+        animationT: 0,
+        introParticles: {
+            color: "black",
+            number: 100,
+            size: 80,
+            speed: 0.5,
+            life: 500
+        }
+    },
+    {
+        id: "thief",
+        head: "thiefhead",
+        body: "thiefbody",
+        activeTool: "thiefcrowbar",
+        name: "T. Felofavan",
+        intro: "Lovely hotel you've got here."
+    },
+    {
+        id: "insomniac",
+        head: "insomniachead",
+        activeHead: "insomniacactivehead",
+        body: "insomniacbody",
+        activeTool: "insomniacknife",
+        name: "S. Onpyh",
+        intro: "I'd like your quietest room."
+    },
+];
+var people = {};
+for (var i = 0; i < peopleList.length; i++) {
+    people[peopleList[i].id] = peopleList[i];
+}
+
+var intro = true;
+var managerOut = true;
+var introLine = 0;
+var introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
+
+var managerX = 0;
+
+var manager = {
+    head: "managerhead",
+    body: "managerbody",
+    animation: "talking",
+    animationT: 0
+};
+
+var guestIDs = {};
+var guest = pickGuest();
+var guestSaidHello = false;
+
+function pickGuest() {
+    var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
+    var guestID = ids[Math.floor(Math.random() * ids.length)];
+    guestIDs[guestID] = 1;
+    return people[guestID];
+}
+
+function animate(person, animation) {
+    person.animation = animation;
+    person.animationT = 0;
+}
+
+function animTick(person, ms) {
+    person.animationT += ms;
+    if (person.animationT > animLengths[person.animation]) {
+        person.animation = "standing";
+        person.animationT = 0;
+    }
+}
+
+var animLengths = {
+    activating: 770,
+    walking: 100000,
+    killing: 1000,
+    neutralizing: 2000,
+    seducing: 2000,
+    angry: 1500,
+    suicide: 3000,
+    fucking: 3000,
+    talking: 1550
+};
+
+var particles = [];
+
 function input(ms) {
+    if (intro) {
+        if (click) {
+            introLine++;
+            if (introLine >= introLines.length) {
+                intro = false;
+                return;
+            }
+            animate(manager, "talking");
+        }
+        animTick(manager, ms);
+        return;
+    }
+    if (managerOut) {
+        managerX += ms * 2;
+        if (managerX > 1200) {
+            managerOut = false;
+            if (guest.introParticles) {
+                for (var i = 0; i < guest.introParticles.number; i++) {
+                    var angle = Math.random() * Math.PI * 2;
+                    var dist = Math.random() * 180;
+                    var speed = guest.introParticles.speed * (Math.random() + 0.5);
+                    particles.push({
+                        color: guest.introParticles.color,
+                        size: guest.introParticles.size,
+                        x: w / 2 + Math.cos(angle) * dist,
+                        y: h / 2 + Math.sin(angle) * dist,
+                        dx: Math.cos(angle) * speed,
+                        dy: Math.sin(angle) * speed,
+                        life: guest.introParticles.life
+                    });
+                }
+            }
+        }
+        return;
+    }
+    if (!guestSaidHello && click) {
+        guestSaidHello = true;
+        animate(guest, "talking");
+    }
+    animTick(guest, ms);
     click = null;
 }
 
 function update(ms) {
-    
+    for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.life -= ms;
+        p.x += p.dx * ms;
+        p.y += p.dy * ms;
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+            i--;
+        }
+    }
 }
 
-var graphicsImage = new Image();
-graphicsImage.src = "gfx.png";
-
-function img(img, x, y) {
-    c.drawImage(graphicsImage, img.x, img.y, img.w, img.h, x, y, img.w, img.h);
+function person(person, x, y, active) {
+    var bodyX = x;
+    var bodyY = y + 110;
+    var headX = x + 10;
+    var headY = y - 110;
+    var toolX = x - 160;
+    var toolY = y - 20;
+    var body = active && person.activeBody ? person.activeBody : person.body;
+    var head = active && person.activeHead ? person.activeHead : person.head;
+    var tool = active && person.activeTool ? person.activeTool : person.tool;
+    var t = person.animationT;
+    switch (person.animation) {
+        case "activating":
+            bodyY += Math.sin(t * 0.004) * 50;
+            headY -= Math.sin(t * 0.004) * 50;
+            if (t % 775 < 775 / 2) {
+                body = person.body;
+                head = person.head;
+                tool = person.tool;
+            } else {
+                body = person.activeBody ? person.activeBody : person.body;
+                head = person.activeHead ? person.activeHead : person.head;
+                tool = person.activeTool ? person.activeTool : person.tool;
+            }
+            break;
+        case "moving":
+            bodyY -= Math.abs(Math.sin(t * 0.005)) * 50;
+            headY -= Math.abs(Math.sin(t * 0.005 + 0.1)) * 50;
+            toolY -= Math.abs(Math.sin(t * 0.005 + 0.2)) * 50;
+            break;
+        case "killing":
+            bodyX += Math.abs(Math.sin(t * 0.005)) * 10;
+            toolX -= Math.abs(Math.sin(t * 0.005)) * 50;
+            toolY += Math.abs(Math.sin(t * 0.005)) * 20;
+            headY += Math.abs(Math.sin(t * 0.005)) * 10;
+            break;
+        case "neutralizing":
+            toolX -= 40;
+            toolY -= 40 + Math.sin(t * 0.005) * 10;
+            break;
+        case "seducing":
+            bodyX += Math.sin(t * 0.005) * 10;
+            break;
+        case "angry":
+            headY -= Math.abs(Math.sin(t * 0.025)) * 20 - 30;
+            toolX -= Math.abs(Math.sin(t * 0.025)) * 20 - 20;
+            bodyX += Math.abs(Math.sin(t * 0.025)) * 5;
+            break;
+        case "fucking":
+            bodyX -= Math.abs(Math.sin(t * Math.min(0.01, 0.004 + t * 0.000001))) * 50 - 20;
+            headX += Math.abs(Math.sin(t * Math.min(0.01, 0.004 + t * 0.000001))) * 10 - 10;
+            headY += 20;
+            break;
+        case "talking":
+            headY -= Math.abs(Math.sin(t * 0.01)) * 20;
+            break;
+        case "suicide":
+            break;
+    }
+    img(body, bodyX, bodyY);
+    img(head, headX, headY);
+    img(tool, toolX, toolY);
 }
+
+var images = {};
+
+function img(name, x, y) {
+    if (name == null) { return; }
+    if (!images[name]) {
+        images[name] = new Image();
+        images[name].src = "graphics/" + name + ".png";
+    }
+    var img = images[name];
+    c.drawImage(img, x - img.width / 2, y - img.height / 2);
+}
+
+function text(text, x, y) {
+    c.font = "18px Serif";
+    var sz = c.measureText(text);
+    var h = 18;
+    c.fillStyle = "black";
+    c.fillRect(x - sz.width / 2 - 12, y - h / 2 - 12, sz.width + 24, h + 24);
+    c.fillStyle = "white";
+    c.fillRect(x - sz.width / 2 - 10, y - h / 2 - 10, sz.width + 20, h + 20);
+    c.fillStyle = "black";
+    c.fillText(text, x - sz.width / 2, y + 6);
+}
+
+function speech(speaker, text, x, y) {
+    c.font = "18px Serif";
+    var sz = c.measureText(text);
+    var h = 18;
+    c.fillStyle = "black";
+    c.fillRect(x - sz.width / 2 - 12, y - h / 2 - 12, sz.width + 24, h + 24);
+    var sz2 = c.measureText(speaker);
+    c.fillRect(x - sz2.width / 2 - 12, y - h * 3 / 2 - 24, sz2.width + 24, h + 24);
+    c.fillStyle = "white";
+    c.fillRect(x - sz.width / 2 - 10, y - h / 2 - 10, sz.width + 20, h + 20);
+    c.fillText(speaker, x - sz2.width / 2, y - h * 3 / 2 - 2);
+    c.fillStyle = "black";
+    c.fillText(text, x - sz.width / 2, y + 6);
+}
+
+var w = 0;
+var h = 0;
 
 function draw() {
-    
+    c.fillStyle = "#444444";
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    c.resetTransform();
+    var scale = canvas.height / 700.0;
+    w = canvas.width / scale;
+    h = 700;
+    c.scale(scale, scale);
+    if (intro) {
+        img("lobby-bg", w / 2, h / 2);
+        person(manager, w / 2, h / 2, false);
+        img("lobby-fg", w / 2, h * 0.8);
+        speech("Hotel Manager", introLines[introLine], w / 2, h * 0.8);
+        return;
+    }
+    if (managerOut) {
+        img("lobby-bg", w / 2, h / 2);
+        person(manager, w / 2 + managerX, h / 2, false);
+        img("lobby-fg", w / 2, h * 0.8);
+        return;
+    }
+    img("lobby-bg", w / 2, h / 2);
+    person(guest, w / 2, h / 2, false);
+    for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        c.fillColor = p.color;
+        c.beginPath();
+        c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        c.fill();
+    }
+    img("lobby-fg", w / 2, h * 0.8);
+    if (guestSaidHello) {
+        speech(guest.name, guest.intro, w / 2, h * 0.8);
+        c.fillStyle = "#b3a221";
+        c.fillRect(w / 2 - 100, 600, 200, 50);
+        c.fillStyle = "#dac739";
+        if (cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+            c.fillStyle = "#e2d363";
+        }
+        c.fillRect(w / 2 - 98, 602, 196, 46);
+        c.fillStyle = "black";
+        c.fillText("ASSIGN ROOM", w / 2 - c.measureText("ASSIGN ROOM").width / 2, 632);
+    }
 }
 
 var canvas = document.getElementById("gameCanvas");
@@ -95,7 +456,7 @@ jQuery(window).ready(function() {
     canvas.height = window.innerHeight - 20;
 });
  
-canvas.addEventListener("click", function() {
+/*canvas.addEventListener("click", function() {
     if (canvas.webkitRequestFullScreen) {
         canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
     } else if (canvas.mozRequestFullScreen) {
@@ -103,7 +464,7 @@ canvas.addEventListener("click", function() {
     } else if (canvas.requestFullScreen) {
         canvas.requestFullScreen();
     }
-});
+});*/
         </script>
     </body>
 </html>
