@@ -116,7 +116,10 @@ var peopleList = [
         strength: 1,
         alive: true,
         stealable: "cultiststaff",
-        stealingNeutralizes: true
+        stealingNeutralizes: true,
+        priority: 10,
+        summons: true,
+        disturbanceNeutralizes: true
     },
     {
         id: "snorer",
@@ -134,7 +137,7 @@ var peopleList = [
         strength: 1,
         alive: true,
         snores: true,
-        priority: 1
+        priority: 40
     },
     {
         id: "granny",
@@ -169,8 +172,7 @@ var peopleList = [
         neutralizes: {werewolf: 1, vampire: 1},
         stealable: "priestcross",
         neutralized: false,
-        stealingNeutralizes: true,
-        disturbanceNeutralizes: true
+        stealingNeutralizes: true
     },
     {
         id: "vamp",
@@ -382,10 +384,10 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
-    if (!guestIDs.snorer) {
-        guestID = "snorer";
-    } else if (!guestIDs.insomniac) {
-        guestID = "insomniac";
+    if (!guestIDs.cultist) {
+        guestID = "cultist";
+    } else if (!guestIDs.vamp) {
+        guestID = "vamp";
     }
     /* else if (!guestIDs.suicide) {
         guestID = "suicide";
@@ -499,7 +501,7 @@ function input(ms) {
 }
 
 function doesActivate(occupant) {
-    return occupant.fucks || occupant.snores || occupant.attacks || occupant.steals || occupant.suicides || (occupant.rampageForStolenItem && occupant.stolenFrom);
+    return occupant.fucks || occupant.summons || occupant.snores || occupant.attacks || occupant.steals || occupant.suicides || (occupant.rampageForStolenItem && occupant.stolenFrom);
 }
 
 function disturbNearby(actor, room) {
@@ -511,6 +513,7 @@ function disturbNearby(actor, room) {
 }
 
 function update(ms) {
+    emitTick++;
     for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
         p.life -= ms;
@@ -522,6 +525,36 @@ function update(ms) {
         }
     }
     if (night) {
+        if (people.cultist != animating) {
+            animTick(people.cultist, ms);
+            if (people.cultist.animation == "summoning" && emitTick % 4 == 0) {
+                var angle = Math.random() * Math.PI * 2;
+                var dist = Math.random() * 20;
+                var speed = Math.random() * 0.1 + 0.1;
+                particles.push({
+                    color: "#00d224",
+                    size: 5,
+                    x: people.cultist.x - 35 + Math.cos(angle) * dist,
+                    y: people.cultist.y - 25 + Math.sin(angle) * dist,
+                    dx: Math.cos(angle) * speed,
+                    dy: Math.sin(angle) * speed,
+                    life: 100 + Math.random() * 200
+                });
+            }
+            if (people.cultist.animation == "summoning" && emitTick % 17 == 0) {
+                var angle = Math.random() * Math.PI * 2;
+                var dist = Math.random() * 10;
+                particles.push({
+                    color: "#00d224",
+                    size: 10,
+                    x: people.cultist.x - 35 + Math.cos(angle) * dist,
+                    y: people.cultist.y - 23 + Math.sin(angle) * dist,
+                    dx: 0,
+                    dy: 0,
+                    life: 500 + Math.random() * 300
+                });
+            }
+        }
         if (animating) {
             var a = animating;
             var currentAnim = animating.animation;
@@ -537,7 +570,7 @@ function update(ms) {
             if (!animating && currentAnim == "seducing") {
                 doAnim(a, "moving");
             }
-            if (animating && currentAnim == "snoring" && emitTick++ % 50 == 0) {
+            if (animating && currentAnim == "snoring" && emitTick % 50 == 0) {
                 particles.push({
                     color: "#ffffff",
                     letter: "Z",
@@ -603,6 +636,7 @@ function update(ms) {
             postAnimWait -= ms;
         } else if (toKill) {
             toKill.alive = false;
+            animate(toKill, "standing");
             for (var i = 0; i < 30; i++) {
                 var angle = Math.random() * Math.PI * 2;
                 var dist = Math.random() * 20;
@@ -642,10 +676,12 @@ function update(ms) {
                         }
                         if (room.occupant.disturbanceNeutralizes) {
                             doAnim(room.occupant, "interrupted");
+                            neutralize(room.occupant);
                             console.log(room.occupant.id + " neutralized by disturbance");
                             return;
                         }
                     }
+                    return;
                 }
                 console.log("Finding next guest");
                 for (var i = 0; i < rooms.length; i++) {
@@ -699,6 +735,13 @@ function update(ms) {
                     console.log(turnGuest.id + " moving");
                     targetRoom = rooms[(rooms.indexOf(turnGuestRoom) + turnGuest.moveTo + rooms.length) % rooms.length];
                     doMove(turnGuest, turnGuestRoom, targetRoom, true);
+                    return;
+                }
+                if (turnGuest.summons) {
+                    console.log(turnGuest.id + " starts summoning");
+                    animate(turnGuest, "summoning"); // In the BG
+                    turnGuest.moved = true;
+                    turnGuest = null;
                     return;
                 }
                 if (turnGuest.fucks) {
@@ -881,6 +924,7 @@ var animLengths = {
     deactivating: 385,
     walking: 100000,
     standing: 100000,
+    summoning: 100000,
     killing: 500,
     neutralizing: 2000,
     seducing: 2000,
@@ -888,7 +932,8 @@ var animLengths = {
     suicide: 3000,
     fucking: 3000,
     talking: 1550,
-    snoring: 3500
+    snoring: 3500,
+    interrupted: 3000
 };
 
 function person(person, x, y, active) {
@@ -913,6 +958,14 @@ function person(person, x, y, active) {
     }
     var t = person.animationT;
     switch (person.animation) {
+        case "summoning":
+            bodyX += Math.sin(t * 0.002) * 20;
+            headX -= Math.sin(t * 0.002) * 20;
+            toolX -= Math.sin(t * 0.002) * 40;
+            break;
+        case "interrupted":
+            toolX = Math.sin(t * 0.1) * 20;
+            break;
         case "stealing":
             stolenY = y + 120 - Math.sin(t * 0.002) * 250;
             break;
@@ -1015,6 +1068,13 @@ function text(text, x, y) {
     c.fillText(text, x - sz.width / 2, y + 6);
 }
 
+function whiteText(text, x, y) {
+    c.font = "18px Serif";
+    var sz = c.measureText(text);
+    c.fillStyle = "white";
+    c.fillText(text, x - sz.width / 2, y + 6);
+}
+
 function speech(speaker, text, x, y) {
     c.font = "18px Serif";
     var sz = c.measureText(text);
@@ -1060,7 +1120,7 @@ function draw() {
             var p = particles[i];
             c.fillStyle = p.color;
             if (p.letter) {
-                text(p.letter, p.x, p.y);
+                whiteText(p.letter, p.x, p.y);
             } else {
                 c.beginPath();
                 c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
