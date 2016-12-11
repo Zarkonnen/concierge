@@ -272,6 +272,8 @@ var splash = true;
 var night = false;
 var intro = true;
 var epilogue = false;
+var intertitle = null;
+var intertitleT = 0;
 var managerOut = true;
 var introLine = 0;
 var introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
@@ -499,6 +501,9 @@ function input(ms) {
                         guest = null;
                         assignGuest = false;
                         night = true;
+                        intertitle = "That night...";
+                        intertitleT = 2000;
+                        postAnimWait = 2000;
                     } else {
                         guest = pickGuest();
                         guestWait = 500;
@@ -547,6 +552,13 @@ function disturbNearby(actor, room) {
 }
 
 function update(ms) {
+    if (intertitle) {
+        intertitleT -= ms;
+        if (intertitleT <= 0) {
+            intertitle = null;
+        }
+        return;
+    }
     emitTick++;
     for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
@@ -798,6 +810,8 @@ function update(ms) {
                     return;
                 }
                 epilogue = true;
+                intertitle = "The next morning...";
+                intertitleT = 2000;
                 managerX = 0;
                 animate(manager, "talking");
                 return;
@@ -1251,13 +1265,15 @@ var scale = 1.0;
 
 function draw() {
     c.resetTransform();
-    c.fillStyle = "#ddc3ac";
+    c.fillStyle = intertitle ? "#3d3c41" : "#ddc3ac";
     c.fillRect(0, 0, canvas.width, canvas.height);
     scale = canvas.height / 700.0;
     w = canvas.width / scale;
     h = 700;
     c.scale(scale, scale);
-    if (splash) {
+    if (intertitle) {
+        whiteText(intertitle, w / 2, h / 2);
+    } else if (splash) {
         img("logo", w / 2, h * 0.6);
     } else if (epilogue) {
         img("lobby-bg", w / 2, h / 2);
