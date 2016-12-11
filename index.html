@@ -16,7 +16,9 @@ var peopleList = [
         body: "spybody",
         activeTool: "spygun",
         name: "Septimus Smith",
-        intro: "The name's Smith. Septimus Smith."
+        intro: "The name's Smith. Septimus Smith.",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "werewolf",
@@ -26,7 +28,9 @@ var peopleList = [
         activeBody: "werewolfactivebody",
         activeTool: "werewolfclaw",
         name: "U.P. Garoul",
-        intro: "Lovely moon tonight, er, right?"
+        intro: "Lovely moon tonight, er, right?",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "murderer",
@@ -35,7 +39,9 @@ var peopleList = [
         body: "murdererbody",
         activeTool: "murdereraxe",
         name: "Mr. Grushko",
-        intro: "I am Mister Grusko. One room, please."
+        intro: "I am Mister Grusko. One room, please.",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "suicide",
@@ -44,7 +50,9 @@ var peopleList = [
         body: "suicidebody",
         activeTool: "suicidegun",
         name: "Werther Junge",
-        intro: "It's OK if I pay in the morning, right?"
+        intro: "It's OK if I pay in the morning, right?",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "cultist",
@@ -54,7 +62,9 @@ var peopleList = [
         activeBody: "cultistactivebody",
         activeTool: "cultiststaff",
         name: "Philippa Marsh",
-        intro: "Greetings. Is my room ready?"
+        intro: "Greetings. Is my room ready?",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "snorer",
@@ -62,14 +72,18 @@ var peopleList = [
         activeHead: "snoreractivehead",
         body: "snorerbody",
         name: "Mr. O'Doul",
-        intro: "Can't wait for a good night's sleep, eh?"
+        intro: "Can't wait for a good night's sleep, eh?",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "granny",
         head: "grannyhead",
         body: "grannybody",
         name: "Mrs. Spelt",
-        intro: "Hello, dearie."
+        intro: "Hello, dearie.",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "priest",
@@ -77,7 +91,9 @@ var peopleList = [
         body: "priestbody",
         activeTool: "priestcross",
         name: "Father Rumbucket",
-        intro: "Hello."
+        intro: "Hello.",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "vamp",
@@ -86,7 +102,9 @@ var peopleList = [
         body: "vampbody",
         activeBody: "vampactivebody",
         name: "Raquelle",
-        intro: "Hi! *giggles*"
+        intro: "Hi! *giggles*",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "vampire",
@@ -110,8 +128,10 @@ var peopleList = [
         head: "thiefhead",
         body: "thiefbody",
         activeTool: "thiefcrowbar",
-        name: "T. Felofavan",
-        intro: "Lovely hotel you've got here."
+        name: "T. Felofavan", // It fell off a van
+        intro: "Lovely hotel you've got here.",
+        animation: "standing",
+        animationT: 0,
     },
     {
         id: "insomniac",
@@ -120,7 +140,9 @@ var peopleList = [
         body: "insomniacbody",
         activeTool: "insomniacknife",
         name: "S. Onpyh",
-        intro: "I'd like your quietest room."
+        intro: "I'd like your quietest room.",
+        animation: "standing",
+        animationT: 0,
     },
 ];
 var people = {};
@@ -128,23 +150,74 @@ for (var i = 0; i < peopleList.length; i++) {
     people[peopleList[i].id] = peopleList[i];
 }
 
+// State
 var intro = true;
 var managerOut = true;
 var introLine = 0;
 var introLines = ["I'm sick of you re-assigning guests for trivial reasons!", "In this hotel, each guest gets one room and stays in it!", "And those terrible deaths in recent weeks...", "We can afford no more negative press, no more corpses in our rooms.", "Now get to work - I see today's first guest coming in."];
-
+var assignGuest = false;
+var guestWait = 0;
 var managerX = 0;
-
 var manager = {
     head: "managerhead",
     body: "managerbody",
     animation: "talking",
     animationT: 0
 };
-
 var guestIDs = {};
 var guest = pickGuest();
 var guestSaidHello = false;
+var particles = [];
+var rooms = [
+    {
+        name: "Room 1",
+        x: 256,
+        y: 0,
+        w: 182,
+        h: 265,
+        occupant: null
+    },
+    {
+        name: "Room 2",
+        x: 256 + 205,
+        y: 0,
+        w: 182,
+        h: 265,
+        occupant: null
+    },
+    {
+        name: "Room 3",
+        x: 256 + 205 * 2,
+        y: 0,
+        w: 182,
+        h: 265,
+        occupant: null
+    },
+    {
+        name: "Room 4",
+        x: 256 + 205 * 2,
+        y: 435,
+        w: 182,
+        h: 265,
+        occupant: null
+    },
+    {
+        name: "Room 5",
+        x: 256 + 205,
+        y: 435,
+        w: 182,
+        h: 265,
+        occupant: null
+    },
+    {
+        name: "Room 6",
+        x: 256,
+        y: 435,
+        w: 182,
+        h: 265,
+        occupant: null
+    }
+];
 
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
@@ -178,25 +251,64 @@ var animLengths = {
     talking: 1550
 };
 
-var particles = [];
-
 function input(ms) {
-    if (intro) {
+    if (assignGuest) {
         if (click) {
-            introLine++;
-            if (introLine >= introLines.length) {
-                intro = false;
-                return;
+            for (var i = 0; i < rooms.length; i++) {
+                var room = rooms[i];
+                if (!room.occupant && click.x / scale > room.x + w / 2 - 500 && click.x / scale < room.x + room.w + w / 2 - 500 && click.y / scale > room.y && click.y / scale < room.y + room.h) {
+                    room.occupant = guest;
+                    guest = pickGuest();
+                    guestWait = 500;
+                    assignGuest = false;
+                    guestSaidHello = false;
+                }
             }
-            animate(manager, "talking");
         }
-        animTick(manager, ms);
-        return;
+    } else {
+        if (intro) {
+            if (click) {
+                introLine++;
+                if (introLine >= introLines.length) {
+                    intro = false;
+                    return;
+                }
+                animate(manager, "talking");
+            }
+        } else if (managerOut) {
+            managerX += ms * 2;
+            if (managerX > 1200) {
+                managerOut = false;
+                guestWait = 100;
+            }
+        } else if (guestWait == 0 && !guestSaidHello && click) {
+            guestSaidHello = true;
+            animate(guest, "talking");
+        } else if (guestWait == 0 && guestSaidHello && click && cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+            assignGuest = true;
+        }
     }
-    if (managerOut) {
-        managerX += ms * 2;
-        if (managerX > 1200) {
-            managerOut = false;
+    click = null;
+}
+
+function update(ms) {
+    for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.life -= ms;
+        p.x += p.dx * ms;
+        p.y += p.dy * ms;
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+            i--;
+        }
+    }
+    if (guest) {
+        animTick(guest, ms);
+    }
+    animTick(manager, ms);
+    if (guestWait > 0) {
+        guestWait = Math.max(0, guestWait - ms);
+        if (guestWait == 0) {
             if (guest.introParticles) {
                 for (var i = 0; i < guest.introParticles.number; i++) {
                     var angle = Math.random() * Math.PI * 2;
@@ -213,26 +325,6 @@ function input(ms) {
                     });
                 }
             }
-        }
-        return;
-    }
-    if (!guestSaidHello && click) {
-        guestSaidHello = true;
-        animate(guest, "talking");
-    }
-    animTick(guest, ms);
-    click = null;
-}
-
-function update(ms) {
-    for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        p.life -= ms;
-        p.x += p.dx * ms;
-        p.y += p.dy * ms;
-        if (p.life <= 0) {
-            particles.splice(i, 1);
-            i--;
         }
     }
 }
@@ -332,7 +424,7 @@ function speech(speaker, text, x, y) {
     c.fillStyle = "black";
     c.fillRect(x - sz.width / 2 - 12, y - h / 2 - 12, sz.width + 24, h + 24);
     var sz2 = c.measureText(speaker);
-    c.fillRect(x - sz2.width / 2 - 12, y - h * 3 / 2 - 24, sz2.width + 24, h + 24);
+    c.fillRect(x - sz2.width / 2 - 12, y - h * 3 / 2 - 24, sz2.width + 24, h + 14);
     c.fillStyle = "white";
     c.fillRect(x - sz.width / 2 - 10, y - h / 2 - 10, sz.width + 20, h + 20);
     c.fillText(speaker, x - sz2.width / 2, y - h * 3 / 2 - 2);
@@ -342,49 +434,76 @@ function speech(speaker, text, x, y) {
 
 var w = 0;
 var h = 0;
+var scale = 1.0;
 
 function draw() {
     c.fillStyle = "#444444";
     c.fillRect(0, 0, canvas.width, canvas.height);
     c.resetTransform();
-    var scale = canvas.height / 700.0;
+    scale = canvas.height / 700.0;
     w = canvas.width / scale;
     h = 700;
     c.scale(scale, scale);
-    if (intro) {
-        img("lobby-bg", w / 2, h / 2);
-        person(manager, w / 2, h / 2, false);
-        img("lobby-fg", w / 2, h * 0.8);
-        speech("Hotel Manager", introLines[introLine], w / 2, h * 0.8);
-        return;
-    }
-    if (managerOut) {
-        img("lobby-bg", w / 2, h / 2);
-        person(manager, w / 2 + managerX, h / 2, false);
-        img("lobby-fg", w / 2, h * 0.8);
-        return;
-    }
-    img("lobby-bg", w / 2, h / 2);
-    person(guest, w / 2, h / 2, false);
-    for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        c.fillColor = p.color;
-        c.beginPath();
-        c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        c.fill();
-    }
-    img("lobby-fg", w / 2, h * 0.8);
-    if (guestSaidHello) {
-        speech(guest.name, guest.intro, w / 2, h * 0.8);
-        c.fillStyle = "#b3a221";
-        c.fillRect(w / 2 - 100, 600, 200, 50);
-        c.fillStyle = "#dac739";
-        if (cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
-            c.fillStyle = "#e2d363";
+    if (assignGuest) {
+        img("rooms", w / 2, h / 2);
+        c.translate(w / 2 - 500, 0);
+        for (var i = 0; i < rooms.length; i++) {
+            var room = rooms[i];
+            if (room.occupant) {
+                c.translate(room.x + room.w / 2, room.y + room.h * 3 / 4);
+                c.scale(0.2, 0.2);
+                person(room.occupant, 0, 0, false);
+                c.resetTransform();
+                c.scale(scale, scale);
+                c.translate(w / 2 - 500, 0);
+            } else if (cursor.x / scale > room.x + w / 2 - 500 && cursor.x / scale < room.x + room.w + w / 2 - 500 && cursor.y / scale > room.y && cursor.y / scale < room.y + room.h) {
+                c.fillStyle = "rgba(255, 255, 255, 0.5)";
+                c.fillRect(room.x, room.y, room.w, room.h);
+            }
+            speech(room.name, room.occupant ? room.occupant.name : "Empty", room.x + room.w / 2, room.y + room.h / 4);
         }
-        c.fillRect(w / 2 - 98, 602, 196, 46);
-        c.fillStyle = "black";
-        c.fillText("ASSIGN ROOM", w / 2 - c.measureText("ASSIGN ROOM").width / 2, 632);
+        c.resetTransform();
+        c.translate(cursor.x, cursor.y);
+        c.scale(scale * 0.2, scale * 0.2);
+        person(guest, 0, 0, false);
+    } else {
+        if (intro) {
+            img("lobby-bg", w / 2, h / 2);
+            person(manager, w / 2, h / 2, false);
+            img("lobby-fg", w / 2, h * 0.8);
+            speech("Hotel Manager", introLines[introLine], w / 2, h * 0.8);
+            return;
+        }
+        if (managerOut) {
+            img("lobby-bg", w / 2, h / 2);
+            person(manager, w / 2 + managerX, h / 2, false);
+            img("lobby-fg", w / 2, h * 0.8);
+            return;
+        }
+        img("lobby-bg", w / 2, h / 2);
+        if (guestWait == 0) {
+            person(guest, w / 2, h / 2, false);
+        }
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            c.fillColor = p.color;
+            c.beginPath();
+            c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            c.fill();
+        }
+        img("lobby-fg", w / 2, h * 0.8);
+        if (guestSaidHello) {
+            speech(guest.name, guest.intro, w / 2, h * 0.8);
+            c.fillStyle = "#b3a221";
+            c.fillRect(w / 2 - 100, 600, 200, 50);
+            c.fillStyle = "#dac739";
+            if (cursor.x / scale > w / 2 - 100 && cursor.x / scale < w / 2 + 100 && cursor.y / scale > 600 && cursor.y / scale < 650) {
+                c.fillStyle = "#e2d363";
+            }
+            c.fillRect(w / 2 - 98, 602, 196, 46);
+            c.fillStyle = "black";
+            c.fillText("ASSIGN ROOM", w / 2 - c.measureText("ASSIGN ROOM").width / 2, 632);
+        }
     }
 }
 

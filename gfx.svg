@@ -48,8 +48,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="-1703.6421"
-     inkscape:cy="-1237.927"
+     inkscape:cx="60.72908"
+     inkscape:cy="368.93594"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -759,7 +759,7 @@
     <path
        transform="translate(978,-151)"
        sodipodi:type="arc"
-       style="fill:#eac086;fill-opacity:1;stroke:none"
+       style="fill:#f1c276;fill-opacity:1;stroke:none"
        id="path4088"
        sodipodi:cx="170.5"
        sodipodi:cy="713.86218"
@@ -784,7 +784,7 @@
        sodipodi:cy="713.86218"
        sodipodi:cx="170.5"
        id="path4099"
-       style="fill:#eac086;fill-opacity:1;stroke:none"
+       style="fill:#f1c276;fill-opacity:1;stroke:none"
        sodipodi:type="arc"
        transform="translate(1162,-120)"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/snoreractivehead.png"
@@ -1090,7 +1090,7 @@
        sodipodi:cy="713.86218"
        sodipodi:cx="170.5"
        id="path4193"
-       style="fill:#eac086;fill-opacity:1;stroke:none"
+       style="fill:#f1c276;fill-opacity:1;stroke:none"
        sodipodi:type="arc"
        transform="translate(-390.95541,63.166522)"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/thiefhead.png"
@@ -1128,7 +1128,7 @@
        sodipodi:cy="713.86218"
        sodipodi:cx="170.5"
        id="path4227"
-       style="fill:#eac086;fill-opacity:1;stroke:none"
+       style="fill:#744718;fill-opacity:1;stroke:none"
        sodipodi:type="arc"
        transform="translate(-645,-287)"
        inkscape:export-filename="/home/zar/Desktop/Projects/concierge/priesthead.png"
@@ -3422,5 +3422,135 @@
          x="-1907.9983"
          y="2326.3623"
          style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Milkyway Hotel Personal Use;-inkscape-font-specification:Milkyway Hotel Personal Use">Concierge</tspan></text>
+    <g
+       id="g3389"
+       inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <rect
+         style="fill:#ddc3ac;fill-opacity:1;stroke:none"
+         id="rect3341"
+         width="715.93195"
+         height="376.25766"
+         x="-2825.595"
+         y="697.93011"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         y="-2825.595"
+         x="856.53137"
+         height="526.71991"
+         width="59.05555"
+         id="rect3343"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         transform="matrix(0,1,1,0,0,0)"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         y="2293.8594"
+         x="709.21814"
+         height="90.869553"
+         width="134.15298"
+         id="rect3345"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3347"
+         width="134.15298"
+         height="90.869553"
+         x="709.21814"
+         y="2396.2246"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         y="2498.5896"
+         x="709.21814"
+         height="90.869553"
+         width="134.15298"
+         id="rect3349"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <g
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         id="g3351"
+         transform="matrix(0,0.63978204,-0.63978204,0,-1129.1305,767.4353)">
+        <rect
+           style="fill:#a18f81;fill-opacity:1;stroke:none"
+           id="rect3353"
+           width="209.68546"
+           height="142.03206"
+           x="252.13496"
+           y="1820.509"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           inkscape:export-xdpi="180"
+           inkscape:export-ydpi="180" />
+        <rect
+           inkscape:export-ydpi="180"
+           inkscape:export-xdpi="180"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           y="1980.509"
+           x="252.13496"
+           height="142.03206"
+           width="209.68546"
+           id="rect3355"
+           style="fill:#a18f81;fill-opacity:1;stroke:none" />
+        <rect
+           style="fill:#a18f81;fill-opacity:1;stroke:none"
+           id="rect3357"
+           width="209.68546"
+           height="142.03206"
+           x="252.13496"
+           y="2140.5088"
+           inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/lobby-bg.png"
+           inkscape:export-xdpi="180"
+           inkscape:export-ydpi="180" />
+      </g>
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3359"
+         width="134.15298"
+         height="42.010986"
+         x="816.88806"
+         y="2318.2886"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         inkscape:export-ydpi="180"
+         inkscape:export-xdpi="180"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         y="2420.6538"
+         x="816.88806"
+         height="42.010986"
+         width="134.15298"
+         id="rect3361"
+         style="fill:#a18f81;fill-opacity:1;stroke:none" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         style="fill:#a18f81;fill-opacity:1;stroke:none"
+         id="rect3363"
+         width="134.15298"
+         height="42.010986"
+         x="816.88806"
+         y="2523.019"
+         inkscape:export-filename="/home/zar/Desktop/Projects/concierge/graphics/rooms.png"
+         inkscape:export-xdpi="180"
+         inkscape:export-ydpi="180" />
+    </g>
   </g>
 </svg>
