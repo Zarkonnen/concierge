@@ -117,7 +117,7 @@ var peopleList = [
         alive: true,
         stealable: "cultiststaff",
         stealingNeutralizes: true,
-        priority: 10,
+        priority: 40,
         summons: true,
         disturbanceNeutralizes: true
     },
@@ -137,7 +137,7 @@ var peopleList = [
         strength: 1,
         alive: true,
         snores: true,
-        priority: 40
+        priority: 50
     },
     {
         id: "granny",
@@ -192,7 +192,8 @@ var peopleList = [
         alive: true,
         moveTo: 3,
         fucks: true,
-        priority: 80
+        priority: 80,
+        winsOverVampire: true
     },
     {
         id: "vampire",
@@ -217,7 +218,7 @@ var peopleList = [
         strength: 6,
         alive: true,
         killsIntruders: true,
-        priority: 1,
+        priority: 60,
         feeds: true,
         moveTo: -1
     },
@@ -237,7 +238,7 @@ var peopleList = [
         strength: 1,
         alive: true,
         steals: true,
-        priority: 50,
+        priority: 30,
         moveTo: 1
     },
     {
@@ -387,13 +388,13 @@ function isFull() {
 function pickGuest() {
     var ids = peopleList.map(function(p) { return p.id; }).filter(function(id) { return !guestIDs[id]; });
     var guestID = ids[Math.floor(Math.random() * ids.length)];
-    if (!guestIDs.priest) {
-        guestID = "priest";
+    if (!guestIDs.cultist) {
+        guestID = "cultist";
     } else if (!guestIDs.vampire) {
         guestID = "vampire";
     }
-     else if (!guestIDs.werewolf) {
-        guestID = "werewolf";
+     else if (!guestIDs.vamp) {
+        guestID = "vamp";
     }
     guestIDs[guestID] = 1;
     var guest = people[guestID];
@@ -639,7 +640,7 @@ function update(ms) {
                     case MT_END:
                         break;
                 }
-                var spd = ms * 0.3;// qqDPS 0.08;
+                var spd = ms * 0.13;
                 var distSq = (moving.x - tx) * (moving.x - tx) + (moving.y - ty) * (moving.y - ty);
                 if (distSq < spd * spd) {
                     moving.x = tx;
@@ -649,6 +650,15 @@ function update(ms) {
                         doAnim(moving, "seducing");
                         moving.seduced = true;
                         console.log("seductive wiggle");
+                        return;
+                    }
+                    if (movingToState == MT_TRG_CENTER && people.vampire.feedingRoom == movingTo) {
+                        console.log("vampire interrupted at snack, murders");
+                        animating = null;
+                        kill(moving);
+                        moving = null;
+                        turnGuest = null;
+                        targetRoom = null;
                         return;
                     }
                     if (movingToState == MT_END) {
@@ -792,8 +802,10 @@ function update(ms) {
                         turnGuest.moved = true;
                         return;
                     }
-                    targetRoom.occupant.neutralized = true;
+                    //targetRoom.occupant.neutralized = true;
+                    neutralize(targetRoom.occupant);
                     turnGuest.feeding = true;
+                    turnGuest.feedingRoom = targetRoom;
                     turnGuest.moved = true;
                     animate(turnGuest, "feeding");
                     return;
@@ -1076,9 +1088,9 @@ function person(person, x, y, active) {
             }
             break;
         case "moving":
-            bodyY -= Math.abs(Math.sin(t * 0.005)) * 50;
-            headY -= Math.abs(Math.sin(t * 0.005 + 0.1)) * 50;
-            toolY -= Math.abs(Math.sin(t * 0.005 + 0.2)) * 50;
+            bodyY -= Math.abs(Math.sin(t * 0.01)) * 50;
+            headY -= Math.abs(Math.sin(t * 0.01 + 0.2)) * 50;
+            toolY -= Math.abs(Math.sin(t * 0.01 + 0.4)) * 50;
             break;
         case "killing":
             bodyX += Math.abs(Math.sin(t * 0.005)) * 10;
