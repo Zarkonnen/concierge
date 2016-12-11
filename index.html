@@ -35,7 +35,7 @@ var sDoor = hwl("door");
 var sSwish = hwl("swish");
 var sHiss = hwl("hiss");
 var sNight = hwl("night");
-var sStep = hwl("step", 0.3);
+var sStep = hwl("step", 0.2);
 var bgMusic = new Howl({src: ["sounds/bg.ogg", "sounds/bg.mp3"], volume: 0.25, loop: true});
 var playingMusic = null;
 
@@ -1331,7 +1331,7 @@ function person(person, x, y, active) {
             bodyY -= Math.abs(Math.sin(t * 0.01)) * 50;
             headY -= Math.abs(Math.sin(t * 0.01 + 0.2)) * 50;
             toolY -= Math.abs(Math.sin(t * 0.01 + 0.4)) * 50;
-            if (Math.abs(Math.sin(t * 0.01) * 50) < 5 && timeSinceStepSound > 500) {
+            if (Math.abs(Math.sin(t * 0.01) * 50) < 1 && timeSinceStepSound > 500) {
                 sStep.play();
                 timeSinceStepSound = 0;
             }
